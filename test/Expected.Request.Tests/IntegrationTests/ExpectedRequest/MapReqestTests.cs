@@ -2,6 +2,7 @@ using Newtonsoft.Json;
 using Xunit;
 using Expected.Request.Tests.Builders;
 using Shouldly;
+using System.Threading.Tasks;
 
 namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
 {
@@ -22,15 +23,6 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
                     expectedModel.ShouldBe(actualModel);
                 })
                 .Done();
-
-            // await (await (await new Request()
-            //     .PostAsync<TodoModel>(ApiUrl, content))
-            //     .MapAsync<TodoModel>(model => actualModel = model))
-            //     .ExpectAsync((response) => {
-            //         responseContent = response.Content.ReadAsStringAsync().Result;
-            //         var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
-            //         expectedModel.ShouldBe(actualModel);
-            //     });
         }
 
     }
