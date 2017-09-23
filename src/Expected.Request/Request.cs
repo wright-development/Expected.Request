@@ -4,17 +4,17 @@ using System.Threading.Tasks;
 
 namespace Expected.Request
 {
-    public class Request : IRequest, IDisposable
+    public class AsyncRequest : IAsyncRequest
     {
         private HttpClient _client;
         private bool _clientSupplied = false;
 
-        public Request() : this(new HttpClient())
+        public AsyncRequest() : this(new HttpClient())
         {
     
         }
 
-        public Request(HttpClient client)
+        public AsyncRequest(HttpClient client)
         {
             if(client == null)
             {
@@ -28,52 +28,33 @@ namespace Expected.Request
             _client = client;
         }
 
-        public IRequest AddHeader(string key, string value)
-        {
-            _client.DefaultRequestHeaders.Add(key,value);
-            return this;
-        }
 
-        public IRequest WithTimeout(TimeSpan span)
-        {
-            _client.Timeout = span;
-            return this;
-        }
-
-        public IExpectRequest Delete(string url) => DeleteAsync(url).Result;
-
-        public IExpectRequest Get(string url) => GetAsync(url).Result;
-
-        public IExpectRequest Post(string url, HttpContent content) => PostAsync(url, content).Result;
-
-        public IExpectRequest Put(string url, HttpContent content) => PutAsync(url, content).Result;
-
-        public async Task<IExpectRequest> DeleteAsync(string url)
+        public async Task<IExpectAsyncRequest> Delete(string url)
         {
             var response = await _client.DeleteAsync(url);
             Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectAsyncRequest(response);
         }
 
-        public async Task<IExpectRequest> GetAsync(string url)
+        public async Task<IExpectAsyncRequest> Get(string url)
         {
             var response = await _client.GetAsync(url);
             Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectAsyncRequest(response);
         }
 
-        public async Task<IExpectRequest> PostAsync(string url, HttpContent content)
+        public async Task<IExpectAsyncRequest> Post(string url, HttpContent content)
         {
             var response = await _client.PostAsync(url, content);
             Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectAsyncRequest(response);
         }
 
-        public async Task<IExpectRequest> PutAsync(string url, HttpContent content)
+        public async Task<IExpectAsyncRequest> Put(string url, HttpContent content)
         {
             var response = await _client.PutAsync(url, content);
             Dispose();
-            return new ExpectRequest(response);
+            return new ExpectAsyncRequest(response);
         }
 
         public void Dispose()
@@ -82,5 +63,59 @@ namespace Expected.Request
                 _client.Dispose();
             }
         }
+
+        public IAsyncRequest AddHeader(string key, string value)
+        {
+            _client.DefaultRequestHeaders.Add(key,value);
+            return this;
+        }
+
+        public IAsyncRequest WithTimeout(TimeSpan span)
+        {
+            _client.Timeout = span;
+            return this;
+        }
+
     }
+
+    // public class Request : IRequest
+    // {
+    //     private bool _clientSupplied = false;
+    //     private IAsyncRequest _asyncRequest;
+
+    //     public Request()
+    //     {
+    //         _asyncRequest = new AsyncRequest();
+    //     }
+
+    //     public Request(HttpClient client)
+    //     {
+    //         _asyncRequest = new AsyncRequest(client);
+    //     }
+
+    //     public IRequest AddHeader(string key, string value)
+    //     {
+    //         _asyncRequest.AddHeader(key,value);
+    //         return this;
+    //     }
+
+    //     public IRequest WithTimeout(TimeSpan span)
+    //     {
+    //         _asyncRequest.WithTimeout(span);
+    //         return this;
+    //     }
+
+    //     public IExpectRequest Delete(string url) => 
+    //         _asyncRequest.DeleteAsync(url).Result;
+
+    //     public IExpectRequest Get(string url) => 
+    //         _asyncRequest.GetAsync(url).Result;
+
+    //     public IExpectRequest Post(string url, HttpContent content) => 
+    //         _asyncRequest.PostAsync(url, content).Result;
+
+    //     public IExpectRequest Put(string url, HttpContent content) => 
+    //         _asyncRequest.PutAsync(url, content).Result;
+
+    // }
 }

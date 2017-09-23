@@ -8,14 +8,11 @@ namespace Expected.Request.Converter
         public string ContentType => "application/json";
         public string ConvertToContent(T type)
         {
-            var content = JsonConvert.SerializeObject(type);
-            Console.WriteLine("JSON Content: " + content);
-            return content;
+            return JsonConvert.SerializeObject(type);
         }
 
         public T ConvertToObject(string content)
         {
-            Console.WriteLine("JSON Content: " + content);
             return JsonConvert.DeserializeObject<T>(content);
         }
     }

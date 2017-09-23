@@ -15,45 +15,45 @@ namespace Expected.Request.Tests.IntegrationTests
     {
 
         [Fact]
-        public void should_be_able_to_perform_get_after_post()
+        public async void should_be_able_to_perform_get_after_post()
         {
             var content = new TodoModelBuilder().Build();
             string id = "";
 
-            new Request()
+            await new AsyncRequest()
                 .Post<TodoModel>(ApiUrl, content)
-                .Map<TodoModel>(model=>id = model.Id)
-                .ExpectOk()
-                .Request()
-                .Get($"{ApiUrl}/{id}")
-                .ExpectOk()
-                .Expect<TodoModel>(model=> {
+                .Next(x => x.Map<TodoModel>(model=>id = model.Id))
+                .Next(x => x.ExpectOk())
+                .Next(x => x.Request())
+                .Next(x => x.Get($"{ApiUrl}/{id}"))
+                .Next(x => x.ExpectOk())
+                .Next(x => x.Expect<TodoModel>(model=> {
                     model.Id.ShouldBe(id);
                     model.Checked.ShouldBe(content.Checked);
                     model.Text.ShouldBe(content.Text);
-                })
-                .Done();
+                }))
+                .Next(x => x.Done());
         }
 
         [Fact]
-        public void should_handle_get_that_returns_no_content()
+        public async void should_handle_get_that_returns_no_content()
         {
             var content = new TodoModelBuilder().Build();
 
-            new Request()
+            await new AsyncRequest()
                 .Get($"{ApiUrl}/{12345}")
-                .ExpectStatusCode(HttpStatusCode.NoContent)
-                .Done();
+                .Next(x => x.ExpectStatusCode(HttpStatusCode.NoContent))
+                .Next(x => x.Done());
         }
 
         [Fact]
-        public void should_throw_exception_if_status_code_does_not_match()
+        public async void should_throw_exception_if_status_code_does_not_match()
         {
-            Should.Throw<ExpectedException>(()=>{
-                new Request()
+            await Should.ThrowAsync<ExpectedException>(async ()=>{
+                await new AsyncRequest()
                     .Get($"{ApiUrl}/{12345}")
-                    .ExpectStatusCode(HttpStatusCode.OK)
-                    .Done();
+                    .Next(x => x.ExpectStatusCode(HttpStatusCode.OK))
+                    .Next(x => x.Done());
             });
         }
 
