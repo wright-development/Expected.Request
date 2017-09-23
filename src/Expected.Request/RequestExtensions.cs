@@ -2,11 +2,15 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text;
 using Expected.Request.Converter;
+using System;
+using System.Threading;
 
 namespace Expected.Request
 {
     public static class RequestExtensions
     {
+        public static IRequest NoTimeout(this IRequest request) =>
+            request.WithTimeout(Timeout.InfiniteTimeSpan);
         public static IExpectRequest Post<T>(this IRequest request, string url, T type) =>
             request.Post<T>(url, type, new JsonContentConverter<T>());
         

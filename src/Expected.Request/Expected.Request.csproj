@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp1.1</TargetFramework>
+    <TargetFrameworks>netcoreapp1.1;netcoreapp2;</TargetFrameworks>
     <RepositoryUrl>https://github.com/wright-development/Expected.Request.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>testing, api testing, integration testing,</PackageTags>

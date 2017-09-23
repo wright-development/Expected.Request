@@ -7,6 +7,7 @@ namespace Expected.Request
     public class Request : IRequest, IDisposable
     {
         private HttpClient _client;
+        private bool _clientSupplied = false;
 
         public Request() : this(new HttpClient())
         {
@@ -15,13 +16,27 @@ namespace Expected.Request
 
         public Request(HttpClient client)
         {
-            if(client == null) client = new HttpClient();
+            if(client == null)
+            {
+                client = new HttpClient();
+            }
+            else 
+            {
+                _clientSupplied = true;
+            }
+
             _client = client;
         }
 
         public IRequest AddHeader(string key, string value)
         {
             _client.DefaultRequestHeaders.Add(key,value);
+            return this;
+        }
+
+        public IRequest WithTimeout(TimeSpan span)
+        {
+            _client.Timeout = span;
             return this;
         }
 
@@ -63,7 +78,9 @@ namespace Expected.Request
 
         public void Dispose()
         {
-            _client.Dispose();
+            if(!_clientSupplied) {
+                _client.Dispose();
+            }
         }
     }
 }
