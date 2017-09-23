@@ -1,0 +1,5 @@
+FROM microsoft/dotnet:1.1.2-sdk
+COPY . /app
+WORKDIR /app/test/Expected.Request.Tests
+RUN curl https://raw.githubusercontent.com/vishnubob/wait-for-it/master/wait-for-it.sh > /app/wait_for_it.sh \
+    && dotnet restore
