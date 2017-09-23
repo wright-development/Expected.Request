@@ -6,7 +6,7 @@ services:
   - docker
 
 jobs:
-  inlcude:
+  include:
     - stage: test
       script: docker-compose -f docker-compose-integration.yml up --abort-on-container-exit
     - stage: package
