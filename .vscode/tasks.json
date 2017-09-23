@@ -5,22 +5,37 @@
     "tasks": [
         {
             "taskName": "build",
-            "command": "dotnet build",
-            "type": "shell",
+            "type": "process",
+            "command": "msbuild",
+            "args": [
+                // Ask msbuild to generate full paths for file names.
+                "/property:GenerateFullPaths=true",
+                "/t:build"
+            ],
             "group": "build",
             "presentation": {
+                // Reveal the output only if unrecognized errors occur.
                 "reveal": "silent"
             },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
         },
         {
             "taskName": "test",
+            "type": "process",
             "command": "dotnet",
-            "args": [ 
+            "args": [
+                // Ask msbuild to generate full paths for file names.
                 "test",
-                "test/Expected.Request.Tests"
-             ],
+                "test/Expected.Request.Tests/Expected.Request.Tests.csproj"
+            ],
+            "group": "test",
+            "presentation": {
+                // Reveal the output only if unrecognized errors occur.
+                "reveal": "silent"
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
             "problemMatcher": "$msCompile"
-          }
+        }
     ]
 }

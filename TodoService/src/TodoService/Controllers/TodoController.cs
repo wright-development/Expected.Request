@@ -11,6 +11,11 @@ namespace TodoService.Controllers
 {
     public class TodoModel
     {
+        public TodoModel()
+        {
+            
+        }
+
         [JsonProperty("text")]
         public string Text { get; set; }
 
@@ -25,18 +30,24 @@ namespace TodoService.Controllers
     public class TodoController
     {
         private string _connectionString;
+        private readonly ILogger _logger;
 
-        public TodoController()
+        public TodoController(ILoggerFactory loggerFactory)
         {
             _connectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            _logger = loggerFactory.CreateLogger<TodoController>();
+            _logger.LogInformation($"Connection string :{_connectionString}");
         }
 
         [HttpPost]
-        public TodoModel Post([FromBody]TodoModel model)
+        public TodoModel Post([FromBody] TodoModel model)
         {
+
             using (var connection = new MySqlConnection(_connectionString))
             {
+                _logger.LogInformation($"Model Text: {model.Text}");
                 var id = connection.Query<string>("INSERT INTO todo (text, checked) values (@Text, @Checked); SELECT LAST_INSERT_ID();", model).Single();
+                _logger.LogInformation($"Posted ID: {id}");
                 return Get(id);
             }
         }

@@ -10,6 +10,7 @@ namespace Expected.Request
     {
     
         IExpectRequest Expect(Action<HttpResponseMessage> expectedAction);
+        Task<IExpectRequest> ExpectAsync(Action<HttpResponseMessage> expectedAction);
         IExpectRequest ExpectHeader(string header);
         IExpectRequest ExpectHeader(string header, string value);
         

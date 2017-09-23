@@ -123,5 +123,11 @@ namespace Expected.Request
 
             return this;
         }
+
+        public Task<IExpectRequest> ExpectAsync(Action<HttpResponseMessage> expectedAction)
+        {
+            expectedAction(_response);
+            return new Task<IExpectRequest>(()=>this);
+        }
     }
 }

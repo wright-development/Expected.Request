@@ -21,6 +21,15 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
                     var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
                     expectedModel.ShouldBe(actualModel);
                 });
+
+            // await (await (await new Request()
+            //     .PostAsync<TodoModel>(ApiUrl, content))
+            //     .MapAsync<TodoModel>(model => actualModel = model))
+            //     .ExpectAsync((response) => {
+            //         responseContent = response.Content.ReadAsStringAsync().Result;
+            //         var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
+            //         expectedModel.ShouldBe(actualModel);
+            //     });
         }
 
     }

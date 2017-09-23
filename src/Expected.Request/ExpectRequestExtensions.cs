@@ -1,5 +1,6 @@
 using System;
 using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Expected.Request.Converter;
 
@@ -16,7 +17,7 @@ namespace Expected.Request
         public static IExpectRequest Expect<T>(this IExpectRequest expect, Action<T> expectedAction) => 
             expect.Expect(expectedAction, new JsonContentConverter<T>());
         
-        public static async Task<IExpectRequest> ExpectAsync<T>(this IExpectRequest expect, Action<T> expectedAction, IContentConverter<T> converter) =>
+        public static async Task<IExpectRequest> ExpectAsync<T>(this IExpectRequest expect, Action<T> expectedAction) =>
             await expect.ExpectAsync(expectedAction, new JsonContentConverter<T>());
 
         public static IExpectRequest ExpectOk(this IExpectRequest expect) =>
