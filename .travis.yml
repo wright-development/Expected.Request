@@ -1,0 +1,18 @@
+sudo: required
+
+languange: csharp
+
+services:
+  - docker
+
+jobs:
+  inlcude:
+    - stage: test
+      script: docker-compose -f docker-compose-integration.yml up --abort-on-container-exit
+    - stage: package
+      script: docker build -f Dockerfile.deploy
+
+stages:
+  - test
+  - name: package
+    if: branch = master

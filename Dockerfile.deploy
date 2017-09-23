@@ -1,0 +1,14 @@
+FROM microsoft/dotnet:1.1.2-sdk as netcoreapp1
+COPY ./src/Expected.Request /app
+WORKDIR /app
+RUN dotnet restore --packages packages && dotnet build -f netcoreapp1.1 -c Release
+
+FROM microsoft/dotnet:2-sdk as netcoreapp2
+COPY --from=netcoreapp1 /app /app
+WORKDIR /app
+RUN dotnet build -f netcoreapp2 -c Release
+
+FROM microsoft/dotnet:2-sdk
+COPY --from=netcoreapp2 /app /app
+WORKDIR /app
+RUN dotnet pack --no-build -c Release
