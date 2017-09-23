@@ -1,6 +1,6 @@
 sudo: required
 
-language: csharp
+language: generic
 
 services:
   - docker
