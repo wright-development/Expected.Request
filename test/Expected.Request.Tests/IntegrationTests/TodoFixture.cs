@@ -38,7 +38,9 @@ namespace Expected.Request.Tests.IntegrationTests
 
         public TodoFixture()
         {
+            // ConnectionString = "db;Database=todosdb;Uid=root;Pwd=password;SslMode=None;";
             ConnectionString = Environment.GetEnvironmentVariable("CONNECTION_STRING");
+            // ApiUrl = "http://web:5000" + _endpoint;
             ApiUrl = Environment.GetEnvironmentVariable("API_URL") + _endpoint;
             Dispose(); //clean the database before each test
         }

@@ -1,0 +1,11 @@
+{
+  "profiles": {
+    "Expected.Request.Tests": {
+      "commandName": "Project",
+      "environmentVariables": {
+        "CONNECTION_STRING": "Server=192.168.99.100;Database=todosdb;Uid=root;Pwd=password;SslMode=None;",
+        "API_URL": "http://192.168.99.100:5000"
+      }
+    }
+  }
+}
