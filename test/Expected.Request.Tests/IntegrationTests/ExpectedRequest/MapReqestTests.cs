@@ -20,7 +20,8 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
                     responseContent = response.Content.ReadAsStringAsync().Result;
                     var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
                     expectedModel.ShouldBe(actualModel);
-                });
+                })
+                .Done();
 
             // await (await (await new Request()
             //     .PostAsync<TodoModel>(ApiUrl, content))
