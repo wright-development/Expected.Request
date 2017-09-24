@@ -22,7 +22,7 @@ namespace Expected.Request.Tests.IntegrationTests
             string id = "";
 
             await new AsyncRequest()
-                .Post<TodoModel>(ApiUrl, content)
+                .Post(ApiUrl, content)
                 .Next(x => x.Map<TodoModel>(model=>id = model.Id))
                 .Next(x => x.ExpectOk())
                 .Next(x => x.Request())

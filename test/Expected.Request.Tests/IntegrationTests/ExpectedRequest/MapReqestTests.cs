@@ -15,8 +15,9 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
             var content = new TodoModelBuilder().Build();
             string responseContent = "";
             TodoModel actualModel = null;
+            
             await new AsyncRequest()
-                .Post<TodoModel>(ApiUrl, content)
+                .Post(ApiUrl, content)
                 .Next( x => x.Map<TodoModel>(model=> actualModel = model))
                 .Next( x => x.Expect((response)=>{
                     responseContent = response.Content.ReadAsStringAsync().Result;
@@ -24,17 +25,6 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
                     expectedModel.ShouldBe(actualModel);
                 }))
                 .Next( x => x.Done());
-
-
-            // new Request()
-            //     .Post<TodoModel>(ApiUrl, content)
-            //     .Map<TodoModel>(model => actualModel = model)
-            //     .Expect((response) => {
-            //         responseContent = response.Content.ReadAsStringAsync().Result;
-            //         var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
-            //         expectedModel.ShouldBe(actualModel);
-            //     })
-            //     .Done();
         }
 
     }
