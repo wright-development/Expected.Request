@@ -25,7 +25,7 @@ namespace Expected.Request
                 () => Assert.Equal(code, _response.StatusCode),
                 $"The actual status code {_response.StatusCode} does not match the expected status code {code}."
             );
-            return await new Task<IExpectAsyncRequest>(()=>this);
+            return await Task.FromResult(this);
         }
 
         private void RethrowOnException(Action action, string message)
@@ -46,7 +46,7 @@ namespace Expected.Request
                 () => expectedAction(_response),
                 "The custom expectation threw an exception."
             );
-            return await new Task<IExpectAsyncRequest>(()=>this);
+            return await Task.FromResult(this);
         }
 
         public async Task<IExpectAsyncRequest> Expect<T>(Action<T> expectedAction, IContentConverter<T> converter)
@@ -63,7 +63,7 @@ namespace Expected.Request
         public async Task<IAsyncRequest> Request()
         {
             Dispose();
-            return await new Task<IAsyncRequest>(()=>new AsyncRequest());
+            return await Task.FromResult(new AsyncRequest());
         }
 
         public void Dispose()
@@ -74,14 +74,14 @@ namespace Expected.Request
         public async Task<IDoneRequest> Done()
         {
             Dispose();
-            return await new Task<IDoneRequest>(()=>new DoneRequest());
+            return await Task.FromResult(new DoneRequest());
         }
 
         public async Task<IExpectAsyncRequest> Map<T>(Action<T> expectedAction, IContentConverter<T> converter)
         {
             var content = await _response.Content.ReadAsStringAsync();
             expectedAction(converter.ConvertToObject(content));
-            return this;
+            return await Task.FromResult(this);
         }
 
         public async Task<IExpectAsyncRequest> ExpectHeader(string header)
@@ -90,7 +90,7 @@ namespace Expected.Request
                 () => Assert.True(_response.Headers.Contains(header)),
                 $"The header ${header} was not found in the reponse's headers"
             );
-            return await new Task<IExpectAsyncRequest>(()=>this);
+            return await Task.FromResult(this);
         }
 
         public async Task<IExpectAsyncRequest> ExpectHeader(string header, string value)
@@ -115,7 +115,7 @@ namespace Expected.Request
 
 
 
-            return this;
+            return await Task.FromResult(this);
         }
 
         // public Task<IExpectRequest> ExpectAsync(Action<HttpResponseMessage> expectedAction)

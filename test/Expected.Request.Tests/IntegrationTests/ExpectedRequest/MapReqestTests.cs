@@ -10,7 +10,7 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
     public class MapReqestTests : TodoFixture
     {
         [Fact]
-        public async void should_map_the_response_correctly()
+        public async Task should_map_the_response_correctly()
         {
             var content = new TodoModelBuilder().Build();
             string responseContent = "";

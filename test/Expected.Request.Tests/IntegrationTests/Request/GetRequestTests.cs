@@ -7,6 +7,7 @@ using Xunit;
 using Shouldly;
 using Expected.Request.Exceptions;
 using Expected.Request.Tests.Builders;
+using System.Threading.Tasks;
 
 namespace Expected.Request.Tests.IntegrationTests
 {
@@ -15,7 +16,7 @@ namespace Expected.Request.Tests.IntegrationTests
     {
 
         [Fact]
-        public async void should_be_able_to_perform_get_after_post()
+        public async Task should_be_able_to_perform_get_after_post()
         {
             var content = new TodoModelBuilder().Build();
             string id = "";
@@ -36,18 +37,18 @@ namespace Expected.Request.Tests.IntegrationTests
         }
 
         [Fact]
-        public async void should_handle_get_that_returns_no_content()
+        public async Task should_handle_get_that_returns_no_content()
         {
-            var content = new TodoModelBuilder().Build();
-
+            // var content = new TodoModelBuilder().Build();
             await new AsyncRequest()
                 .Get($"{ApiUrl}/{12345}")
-                .Next(x => x.ExpectStatusCode(HttpStatusCode.NoContent))
-                .Next(x => x.Done());
+                .Next( x => x.ExpectStatusCode(HttpStatusCode.NoContent))
+                .Next(  x => x.Done());
+            
         }
 
         [Fact]
-        public async void should_throw_exception_if_status_code_does_not_match()
+        public async Task should_throw_exception_if_status_code_does_not_match()
         {
             await Should.ThrowAsync<ExpectedException>(async ()=>{
                 await new AsyncRequest()
@@ -55,6 +56,7 @@ namespace Expected.Request.Tests.IntegrationTests
                     .Next(x => x.ExpectStatusCode(HttpStatusCode.OK))
                     .Next(x => x.Done());
             });
+
         }
 
     }
