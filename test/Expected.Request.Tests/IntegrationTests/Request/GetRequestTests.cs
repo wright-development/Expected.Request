@@ -21,7 +21,7 @@ namespace Expected.Request.Tests.IntegrationTests
             var content = new TodoModelBuilder().Build();
             string id = "";
 
-            await new AsyncRequest()
+            await new Request()
                 .Post(ApiUrl, content)
                 .Next(x => x.Map<TodoModel>(model=>id = model.Id))
                 .Next(x => x.ExpectOk())
@@ -39,8 +39,7 @@ namespace Expected.Request.Tests.IntegrationTests
         [Fact]
         public async Task should_handle_get_that_returns_no_content()
         {
-            // var content = new TodoModelBuilder().Build();
-            await new AsyncRequest()
+            await new Request()
                 .Get($"{ApiUrl}/{12345}")
                 .Next( x => x.ExpectStatusCode(HttpStatusCode.NoContent))
                 .Next(  x => x.Done());
@@ -51,7 +50,7 @@ namespace Expected.Request.Tests.IntegrationTests
         public async Task should_throw_exception_if_status_code_does_not_match()
         {
             await Should.ThrowAsync<ExpectedException>(async ()=>{
-                await new AsyncRequest()
+                await new Request()
                     .Get($"{ApiUrl}/{12345}")
                     .Next(x => x.ExpectStatusCode(HttpStatusCode.OK))
                     .Next(x => x.Done());

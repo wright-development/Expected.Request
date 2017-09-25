@@ -12,4 +12,5 @@ FROM microsoft/dotnet:2-sdk
 COPY --from=netcoreapp2 /app /app
 WORKDIR /app
 ARG NUGET_API_KEY
-RUN dotnet pack --no-build -c Release && dotnet nuget push ./bin/Release/ --source https://www.nuget.org/api/v2/package -k $NUGET_API_KEY 
+RUN dotnet pack --no-build -c Release
+RUN dotnet nuget push ./bin/Release/ --source https://www.nuget.org/api/v2/package -k $NUGET_API_KEY || true

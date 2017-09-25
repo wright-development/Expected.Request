@@ -10,16 +10,16 @@ using Xunit;
 
 namespace Expected.Request
 {
-    public class ExpectAsyncRequest : IExpectAsyncRequest
+    public class ExpectRequest : IExpectRequest
     {
         private HttpResponseMessage _response;
 
-        public ExpectAsyncRequest(HttpResponseMessage response)
+        public ExpectRequest(HttpResponseMessage response)
         {
             _response = response;
         }
 
-        public async Task<IExpectAsyncRequest> ExpectStatusCode(HttpStatusCode code)
+        public async Task<IExpectRequest> ExpectStatusCode(HttpStatusCode code)
         {
             RethrowOnException(
                 () => Assert.Equal(code, _response.StatusCode),
@@ -40,7 +40,7 @@ namespace Expected.Request
             }
         }
 
-        public async Task<IExpectAsyncRequest> Expect(Action<HttpResponseMessage> expectedAction)
+        public async Task<IExpectRequest> Expect(Action<HttpResponseMessage> expectedAction)
         {
             RethrowOnException(
                 () => expectedAction(_response),
@@ -49,7 +49,7 @@ namespace Expected.Request
             return await Task.FromResult(this);
         }
 
-        public async Task<IExpectAsyncRequest> Expect<T>(Action<T> expectedAction, IContentConverter<T> converter)
+        public async Task<IExpectRequest> Expect<T>(Action<T> expectedAction, IContentConverter<T> converter)
         {
             var content = await _response.Content.ReadAsStringAsync();
             RethrowOnException(
@@ -60,10 +60,10 @@ namespace Expected.Request
         }
 
         
-        public async Task<IAsyncRequest> Request()
+        public async Task<IRequest> Request()
         {
             Dispose();
-            return await Task.FromResult(new AsyncRequest());
+            return await Task.FromResult(new Request());
         }
 
         public void Dispose()
@@ -77,14 +77,14 @@ namespace Expected.Request
             return await Task.FromResult(new DoneRequest());
         }
 
-        public async Task<IExpectAsyncRequest> Map<T>(Action<T> expectedAction, IContentConverter<T> converter)
+        public async Task<IExpectRequest> Map<T>(Action<T> expectedAction, IContentConverter<T> converter)
         {
             var content = await _response.Content.ReadAsStringAsync();
             expectedAction(converter.ConvertToObject(content));
             return await Task.FromResult(this);
         }
 
-        public async Task<IExpectAsyncRequest> ExpectHeader(string header)
+        public async Task<IExpectRequest> ExpectHeader(string header)
         {
             RethrowOnException(
                 () => Assert.True(_response.Headers.Contains(header)),
@@ -93,7 +93,7 @@ namespace Expected.Request
             return await Task.FromResult(this);
         }
 
-        public async Task<IExpectAsyncRequest> ExpectHeader(string header, string value)
+        public async Task<IExpectRequest> ExpectHeader(string header, string value)
         {
             await ExpectHeader(header);
             IEnumerable<string> values = null;
@@ -117,134 +117,5 @@ namespace Expected.Request
 
             return await Task.FromResult(this);
         }
-
-        // public Task<IExpectRequest> ExpectAsync(Action<HttpResponseMessage> expectedAction)
-        // {
-        //     expectedAction(_response);
-        //     return new Task<IExpectRequest>(()=>this);
-        // }
-
     }
-    // public class ExpectRequest : IExpectRequest, IDisposable
-    // {
-    //     private HttpResponseMessage _response;
-
-    //     public ExpectRequest(HttpResponseMessage response)
-    //     {
-    //         _response = response;
-    //     }
-
-    //     public IExpectRequest ExpectStatusCode(HttpStatusCode code)
-    //     {
-    //         RethrowOnException(
-    //             () => Assert.Equal(code, _response.StatusCode),
-    //             $"The actual status code {_response.StatusCode} does not match the expected status code {code}."
-    //         );
-    //         return this;
-    //     }
-
-    //     private void RethrowOnException(Action action, string message)
-    //     {
-    //         try
-    //         {
-    //             action();
-    //         }
-    //         catch (Exception e)
-    //         {
-    //             throw new ExpectedException(message, e);
-    //         }
-    //     }
-
-    //     public IExpectRequest Expect(Action<HttpResponseMessage> expectedAction)
-    //     {
-    //         RethrowOnException(
-    //             () => expectedAction(_response),
-    //             "The custom expectation threw an exception."
-    //         );
-    //         return this;
-    //     }
-
-    //     public async Task<IExpectRequest> ExpectAsync<T>(Action<T> expectedAction, IContentConverter<T> converter)
-    //     {
-    //         var content = await _response.Content.ReadAsStringAsync();
-    //         RethrowOnException(
-    //             () => expectedAction(converter.ConvertToObject(content)),
-    //             "The custom expectation threw an exception."
-    //         );
-    //         return this;
-    //     }
-
-    //     public IExpectRequest Expect<T>(Action<T> expectedAction, IContentConverter<T> converter) =>
-    //         ExpectAsync<T>(expectedAction, converter).Result;
-
-    //     public IRequest Request()
-    //     {
-    //         Dispose();
-    //         return new Request();
-    //     }
-
-    //     public void Dispose()
-    //     {
-    //         _response.Dispose();
-    //     }
-
-    //     public IDoneRequest Done()
-    //     {
-    //         Dispose();
-    //         return new DoneRequest();
-    //     }
-
-    //     public IExpectRequest Map<T>(Action<T> expectedAction, IContentConverter<T> converter)
-    //     {
-    //         return MapAsync<T>(expectedAction, converter).Result;
-    //     }
-
-    //     public async Task<IExpectRequest> MapAsync<T>(Action<T> expectedAction, IContentConverter<T> converter)
-    //     {
-    //         var content = await _response.Content.ReadAsStringAsync();
-    //         expectedAction(converter.ConvertToObject(content));
-    //         return this;
-    //     }
-
-    //     public IExpectRequest ExpectHeader(string header)
-    //     {
-    //         RethrowOnException(
-    //             () => Assert.True(_response.Headers.Contains(header)),
-    //             $"The header ${header} was not found in the reponse's headers"
-    //         );
-    //         return this;
-    //     }
-
-    //     public IExpectRequest ExpectHeader(string header, string value)
-    //     {
-    //         ExpectHeader(header);
-    //         IEnumerable<string> values = null;
-            
-    //         RethrowOnException(
-    //             () =>
-    //             {
-    //                 if (_response.Headers.TryGetValues(header, out values))
-    //                 {
-    //                     Assert.Equal(values.First(), value);
-    //                 }
-    //                 else
-    //                 {
-    //                     throw new Exception();
-    //                 }
-    //             },
-    //             $"Unabled to parse the header ${header}'s values"
-    //         );
-
-
-
-    //         return this;
-    //     }
-
-    //     public Task<IExpectRequest> ExpectAsync(Action<HttpResponseMessage> expectedAction)
-    //     {
-    //         expectedAction(_response);
-    //         return new Task<IExpectRequest>(()=>this);
-    //     }
-
-    // }
 }

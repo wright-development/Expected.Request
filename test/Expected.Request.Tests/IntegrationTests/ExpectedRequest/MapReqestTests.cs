@@ -15,8 +15,8 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
             var content = new TodoModelBuilder().Build();
             string responseContent = "";
             TodoModel actualModel = null;
-            
-            await new AsyncRequest()
+
+            await new Request()
                 .Post(ApiUrl, content)
                 .Next( x => x.Map<TodoModel>(model=> actualModel = model))
                 .Next( x => x.Expect((response)=>{

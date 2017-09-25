@@ -6,7 +6,7 @@
 var ApiUrl = "http://localhost:3000/api/todo";
 var content = new TodoModelBuilder().Build();
 string id = "";
-await new AsyncRequest()
+await new Request()
     .Post(ApiUrl, content)
     .Next(x => x.Map<TodoModel>(model=>id = model.Id))
     .Next(x => x.ExpectOk())
