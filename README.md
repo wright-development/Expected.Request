@@ -22,3 +22,13 @@ await new Request()
     }))
     .Next(x => x.Done());
 ```
+
+## Running Tests
+
+## Unit
+
+**docker-compose -f docker-compose-unit.yml up --build --abort-on-container-exit**
+
+### Integration
+
+**docker-compose -f docker-compose-integration.yml up --build --abort-on-container-exit**
