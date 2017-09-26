@@ -17,7 +17,6 @@ namespace Expected.Request.Unit.Tests.Converter
     {
         private JsonContentConverter<FooType> _classUnderTest;
         private string _jsonContent = "{\"foo\":\"bar\"}";
-
         private FooType _jsonObject = new FooType { Foo = "bar" }; 
 
         public JsonContentConverterTests()
