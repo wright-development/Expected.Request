@@ -60,10 +60,10 @@ namespace Expected.Request
         }
 
         
-        public async Task<IRequest> Request()
+        public async Task<IRequest> Request(HttpClient client = null)
         {
             Dispose();
-            return await Task.FromResult(new Request());
+            return await Task.FromResult(new Request(client));
         }
 
         public void Dispose()

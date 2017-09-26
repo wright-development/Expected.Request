@@ -19,7 +19,7 @@ namespace Expected.Request
 
         
         Task<IDoneRequest> Done();
-        Task<IRequest> Request();
+        Task<IRequest> Request(HttpClient client = null);
         
     }
 }

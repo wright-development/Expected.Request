@@ -1,5 +1,7 @@
 # Expected.Request
 
+![](https://api.travis-ci.org/wright-development/Expected.Request.svg?branch=master)
+
 ## Example
 
 ``` csharp
