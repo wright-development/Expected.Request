@@ -25,7 +25,6 @@ namespace Expected.Request.Tests.IntegrationTests
                 .Post(ApiUrl, content)
                 .Next(x => x.Map<TodoModel>(model=>id = model.Id))
                 .Next(x => x.ExpectOk())
-                .Next(x => x.Request())
                 .Next(x => x.Get($"{ApiUrl}/{id}"))
                 .Next(x => x.ExpectOk())
                 .Next(x => x.Expect<TodoModel>(model=> {
@@ -43,7 +42,6 @@ namespace Expected.Request.Tests.IntegrationTests
                 .Get($"{ApiUrl}/{12345}")
                 .Next( x => x.ExpectStatusCode(HttpStatusCode.NoContent))
                 .Next(  x => x.Done());
-            
         }
 
         [Fact]
