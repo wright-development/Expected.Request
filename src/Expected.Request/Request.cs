@@ -31,7 +31,7 @@ namespace Expected.Request
 
         public async Task<IExpectRequest> Delete(string url)
         {
-            var response = await _client.DeleteAsync(url).ConfigureAwait(false);
+            var response = await _client.DeleteAsync(url);
             Dispose();            
             return new ExpectRequest(response);
         }
