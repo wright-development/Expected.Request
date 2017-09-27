@@ -11,12 +11,16 @@ before_install:
 
 jobs:
   include:
-    - stage: test
+    - stage: unit-test
+      script: docker-compose -f docker-compose-unit.yml up --abort-on-container-exit
+    - stage: integration-test
       script: docker-compose -f docker-compose-integration.yml up --abort-on-container-exit
     - stage: package
       script: docker build --build-arg NUGET_API_KEY=$NUGET_API_KEY -f Dockerfile.deploy .
 
 stages:
-  - test
+  - unit-test
+  - name: integration-test
+    if: branch = master OR branch = qa 
   - name: package
     if: branch = master

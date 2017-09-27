@@ -69,6 +69,7 @@ namespace Expected.Request
         public void Dispose()
         {
             _response.Dispose();
+            
         }
 
         public async Task<IDoneRequest> Done()
