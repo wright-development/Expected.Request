@@ -35,7 +35,8 @@ namespace Expected.Request.Unit.Tests
 
             await _expectedRequestMock.Object.Map<Object>((r)=>{});
 
-            _expectedRequestMock.Verify(x => x.Map<Object>(
+            _expectedRequestMock.
+            Verify(x => x.Map<Object>(
                 It.IsAny<Action<Object>>(),
                 It.IsAny<JsonContentConverter<Object>>()
             ));

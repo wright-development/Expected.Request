@@ -7,12 +7,6 @@ using Xunit;
 namespace Expected.Request.Unit.Tests.Converter
 {
 
-    public class FooType
-    {
-        [JsonProperty("foo")]
-        public string Foo {get;set;}
-    }
-
     public class JsonContentConverterTests
     {
         private JsonContentConverter<FooType> _classUnderTest;
@@ -38,6 +32,12 @@ namespace Expected.Request.Unit.Tests.Converter
             var actualObject = _classUnderTest.ConvertToObject(_jsonContent);
 
             actualObject.Foo.ShouldBe(_jsonObject.Foo);
+        }
+
+        [Fact]
+        public void should_have_the_correct_content_type()
+        {
+            _classUnderTest.ContentType.ShouldBe("application/json");
         }
     }
 }
