@@ -10,7 +10,7 @@ namespace Expected.Request.Unit.Tests.Converter
     public class XmlContentConverterTests
     {
         private XmlContentCoverter<FooType> _classUnderTest;
-        private string _xmlContent = "<?xml version=\"1.0\"?>\r\n<FooType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">\r\n  <Foo>bar</Foo>\r\n</FooType>";
+        private string _xmlContent = "<?xml version=\"1.0\"?><FooType xmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\" xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\">  <Foo>bar</Foo></FooType>";
         private FooType _xmlObject = new FooType { Foo = "bar" }; 
 
         public XmlContentConverterTests()
@@ -23,7 +23,7 @@ namespace Expected.Request.Unit.Tests.Converter
         {
             var actualContent = _classUnderTest.ConvertToContent(_xmlObject);
 
-            actualContent.ShouldBe(_xmlContent);
+            actualContent.Replace("\r", "").Replace("\n", "").ShouldBe(_xmlContent);
         }
 
         [Fact]
