@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  unit:
+    build: 
+      context: .
+      dockerfile: Dockerfile.unit
+    entrypoint: dotnet test

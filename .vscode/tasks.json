@@ -27,7 +27,25 @@
             "args": [
                 // Ask msbuild to generate full paths for file names.
                 "test",
-                "test/Expected.Request.Tests/Expected.Request.Tests.csproj"
+                "test/Expected.Request.Unit.Tests/Expected.Request.Unit.Tests.csproj"
+            ],
+            "group": "test",
+            "presentation": {
+                // Reveal the output only if unrecognized errors occur.
+                "reveal": "silent"
+            },
+            // Use the standard MS compiler pattern to detect errors, warnings and infos
+            "problemMatcher": "$msCompile"
+        },
+        
+        {
+            "taskName": "integration-test",
+            "type": "process",
+            "command": "dotnet",
+            "args": [
+                // Ask msbuild to generate full paths for file names.
+                "test",
+                "test/Expected.Request.Integration.Tests/Expected.Request.Integration.Tests.csproj"
             ],
             "group": "test",
             "presentation": {
