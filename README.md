@@ -2,7 +2,7 @@
 
 ![](https://api.travis-ci.org/wright-development/Expected.Request.svg?branch=master)
 
-## Example
+## Example Usage
 
 ``` csharp
 var ApiUrl = "http://localhost:3000/api/todo";

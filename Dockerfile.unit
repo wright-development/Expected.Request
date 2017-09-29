@@ -1,4 +1,0 @@
-FROM microsoft/dotnet:2-sdk
-COPY . /app
-WORKDIR /app/test/Expected.Request.Unit.Tests
-RUN dotnet restore && dotnet build -f netcoreapp2
