@@ -2,6 +2,8 @@
 
 ![](https://api.travis-ci.org/wright-development/Expected.Request.svg?branch=master)
 
+**[Check out the docs!](https://wright-development.github.io/Expected.Request/)**
+
 ## Example
 
 ``` csharp
