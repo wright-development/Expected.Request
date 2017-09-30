@@ -6,7 +6,7 @@ layout: default
 
 Just as the name suggests Expected.Request helps you define what you **expect** out of your requests.
 
-Expected Request is a Fluent API that guides you through your API testing. It all starts by creating a **new Request**.
+Expected Request is a Fluent API that guides you through your API testing, and it all starts by creating a **new Request**.
 
 ## Installation
 
@@ -28,7 +28,7 @@ dotnet add package Expected.Request
 var request = new Request();
 ```
 
-Once you have created a request, let the chaining begin! Currently the there are the four basic requests **Get, Post, Put, and Delete**. Let's try a Post, and we expect to get a status code of ok.
+Once you have created a request, let the chaining begin! Currently the project supports the four basic requests **Get, Post, Put, and Delete**. Let's try a Post, and we expect to get a status code of ok.
 
 ``` csharp
 //assuming we have an api setup
@@ -44,7 +44,7 @@ Simple right? The idea behind Expected.Request is to test your API's in a clear 
 
 ## More complex usage
 
-Alright, let's get into a more complex example. We'll post a model to the todo api, then use the id we will retrieve the model from the API, and finally, perform some assertions on the object.
+Alright, let's get into a more complex example. We'll post a model to the todo api, then use the id we will retrieve the content response from the API, and finally, perform some assertions on the object.
 
 ``` csharp
 var apiUrl = "http://localhost:3000/api/todo";
@@ -96,7 +96,8 @@ Expected.Request also works well with the TestServer class that Microsoft provid
                 .Next( x => x.Expect<IEnumerable<string>>((reponse)=>{
                     Assert.Equal(reponse.ElementAt(0),"value1");
                     Assert.Equal(reponse.ElementAt(1),"value2");
-                }));
+                }))
+                .Next(x => x.Done());
         }
     }
 ```
