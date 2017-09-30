@@ -16,7 +16,7 @@ You can install Expected.Request by copying and pasting the following command in
 Install-Package Expected.Request
 ```
 
-Or using the dotnet core cli you can install Expected.Request via the command line interface with the following command:
+Or using the .NET Core CLI you can install Expected.Request via the command line interface with the following command:
 
 ```
 dotnet add package Expected.Request
