@@ -18,7 +18,7 @@ Once you have created a request, let the chaining begin! Currently the there are
 
 ``` csharp
 //assuming we have an api setup
-var todoItem = new TodoModel {Text = "Walk the dog", done = false };
+var todoItem = new TodoModel {Text = "Walk the dog", Done = false };
 await request
     .Post("http://localhost:3000/api/todo", todoItem)
     .Next( x => x.ExpectOk())
@@ -33,7 +33,7 @@ Alright, let's get into a more complex example. We'll post a model to the todo a
 
 ``` csharp
 var apiUrl = "http://localhost:3000/api/todo";
-var todoItem = new TodoModel {Text = "Walk the dog", done = false };
+var todoItem = new TodoModel {Text = "Walk the dog", Done = false };
 
 string id = "";
 
