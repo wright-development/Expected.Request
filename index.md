@@ -4,6 +4,8 @@ layout: default
 
 ![](https://api.travis-ci.org/wright-development/Expected.Request.svg?branch=master)
 
+**Documentation in progress.**
+
 Just as the name suggests Expected.Request helps you define what you **expect** out of your requests.
 
 Expected Request is a Fluent API that guides you through your API testing, and it all starts by creating a **new Request**.
