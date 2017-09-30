@@ -70,9 +70,9 @@ Once again with a few calls, we have a fairly self-explanatory API test.
 
 ## Using with Microsoft's TestServer
 
-Expected.Request works well with TestServer class that microsoft provides. Once you have instanciated the TestServer, provide a new client to the request. Then feel free to chain your calls as you would normally.
+Expected.Request also works well with the TestServer class that Microsoft provides in their Microsoft.AspNetCore.TestHost package. Once you have instantiated the TestServer, provide a new client to the request. Then feel free to chain your calls as you would normally.
 
-**For more information about TestServer checkout Microsoft's [documentation](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing)**
+**For more information about TestServer head over to Microsoft's [documentation](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing)**
 
 ``` csharp
  public class ValuesApiTests
