@@ -6,7 +6,21 @@ layout: default
 
 Just as the name suggests Expected.Request helps you define what you **expect** out of your requests.
 
-Expected Request is a Fluent API that guides you through your API testing. It all starts by creating a new Request.
+Expected Request is a Fluent API that guides you through your API testing. It all starts by creating a **new Request**.
+
+## Installation
+
+You can install Expected.Request by copying and pasting the following command into your Package Manager Console within Visual Studio (Tools > NuGet Package Manager > Package Manager Console).
+
+```
+Install-Package Expected.Request
+```
+
+Or using the dotnet core cli you can install Expected.Request via the command line interface with the following command:
+
+```
+dotnet add package Expected.Request
+```
 
 ## Simple usage
 
@@ -27,21 +41,6 @@ await request
 
 Simple right? The idea behind Expected.Request is to test your API's in a clear and cohesive way. Essentially you should be able to read your API tests. In this example we create a new request, post to the todo API with our model, then once the post is complete we expect the status code to be ok, and finally, we call done. Calling done at the end ensures that everything is disposed of properly.
 
-
-
-## Installation
-
-You can install Expected.Request by copying and pasting the following command into your Package Manager Console within Visual Studio (Tools > NuGet Package Manager > Package Manager Console).
-
-```
-Install-Package Expected.Request
-```
-
-Or using the dotnet core cli you can install Expected.Request via the command line interface with the following command:
-
-```
-dotnet add package Expected.Request
-```
 
 ## More complex usage
 
