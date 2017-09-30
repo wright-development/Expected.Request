@@ -39,7 +39,7 @@ await request
     .Next( x => x.Done());
 ```
 
-Simple right? The idea behind Expected.Request is to test your API's in a clear and cohesive way. Essentially you should be able to read your API tests. In this example we create a new request, post to the todo API with our model, then once the post is complete we expect the status code to be ok, and finally, we call done. Calling done at the end ensures that everything is disposed of properly.
+Simple right? The idea behind Expected.Request is to test your APIs in a clear and cohesive way. Essentially you should be able to read your API tests. In this example we create a new request, post to the todo API with our model, then once the post is complete we expect the status code to be ok, and finally, we call done. Calling done at the end ensures that everything is disposed of properly.
 
 
 ## More complex usage
