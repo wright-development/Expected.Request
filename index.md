@@ -75,31 +75,30 @@ Expected.Request also works well with the TestServer class that Microsoft provid
 **For more information about TestServer head over to Microsoft's [documentation](https://docs.microsoft.com/en-us/aspnet/core/testing/integration-testing)**
 
 ``` csharp
- public class ValuesApiTests
+public class ValuesApiTests
+{
+    private readonly TestServer _server;
+    private readonly HttpClient _client;
+    public ValuesApiTests()
     {
-        private readonly TestServer _server;
-        private readonly HttpClient _client;
-        public ValuesApiTests()
-        {
-            _server = new TestServer(new WebHostBuilder()
-                .UseStartup<Startup>());
-            _client = _server.CreateClient();
-        }
-
-
-        [Fact]
-        public async Task check_api_values()
-        {
-            await new Request(_client)
-                .Get("/api/values")
-                .Next( x => x.ExpectOk())
-                .Next( x => x.Expect<IEnumerable<string>>((reponse)=>{
-                    Assert.Equal(reponse.ElementAt(0),"value1");
-                    Assert.Equal(reponse.ElementAt(1),"value2");
-                }))
-                .Next(x => x.Done());
-        }
+        _server = new TestServer(new WebHostBuilder()
+            .UseStartup<Startup>());
+        _client = _server.CreateClient();
     }
+
+    [Fact]
+    public async Task check_api_values()
+    {
+        await new Request(_client)
+            .Get("/api/values")
+            .Next( x => x.ExpectOk())
+            .Next( x => x.Expect<IEnumerable<string>>(reponse)=>{
+                Assert.Equal(reponse.ElementAt(0)"value1");
+                Assert.Equal(reponse.ElementAt(1)"value2");
+            }))
+            .Next(x => x.Done());
+    }
+}
 ```
 
 **If you have any questions or suggestions for this project feel free to post an [issue on github](https://github.com/wright-development/Expected.Request/issues).**
