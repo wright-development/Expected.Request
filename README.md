@@ -22,7 +22,7 @@ await new Request()
         model.Checked.ShouldBe(content.Checked);
         model.Text.ShouldBe(content.Text);
     }))
-    .Next(x => x.Done());
+    .Done();
 ```
 
 ## Running Tests

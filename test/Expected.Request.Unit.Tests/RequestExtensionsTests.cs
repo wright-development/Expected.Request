@@ -25,6 +25,18 @@ namespace Expected.Request.Unit.Tests
         }
 
         [Fact]
+        public async Task should_execute_done_correct()
+        {
+            var expectedRequestMock = new Mock<IExpectRequest>();
+            _requestMock.Setup( x => x.Get(It.IsAny<string>())).Returns(Task.FromResult(expectedRequestMock.Object));
+
+            await _requestMock.Object.Get("")
+                .Done();
+
+            expectedRequestMock.Verify(x => x.Done());
+        }
+
+        [Fact]
         public async Task post_should_use_json_content_by_default()
         {
             var obj = new object();
