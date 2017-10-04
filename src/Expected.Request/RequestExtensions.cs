@@ -18,7 +18,8 @@ namespace Expected.Request
 
         public static async Task Done(this Task<IExpectRequest> expect)
         {
-            await expect.Done();
+            var result = await expect;
+            await result.Done();
         }
     }
 
