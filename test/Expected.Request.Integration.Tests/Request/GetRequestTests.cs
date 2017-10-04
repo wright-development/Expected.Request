@@ -32,7 +32,7 @@ namespace Expected.Request.Tests.IntegrationTests
                     model.Checked.ShouldBe(content.Checked);
                     model.Text.ShouldBe(content.Text);
                 }))
-                .Next(x => x.Done());
+                .Done();
         }
 
         [Fact]
@@ -41,7 +41,7 @@ namespace Expected.Request.Tests.IntegrationTests
             await new Request()
                 .Get($"{ApiUrl}/{12345}")
                 .Next( x => x.ExpectStatusCode(HttpStatusCode.NoContent))
-                .Next(  x => x.Done());
+                .Done();
         }
 
         [Fact]
@@ -51,7 +51,7 @@ namespace Expected.Request.Tests.IntegrationTests
                 await new Request()
                     .Get($"{ApiUrl}/{12345}")
                     .Next(x => x.ExpectStatusCode(HttpStatusCode.OK))
-                    .Next(x => x.Done());
+                    .Done();
             });
 
         }

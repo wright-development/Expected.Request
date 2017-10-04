@@ -24,7 +24,7 @@ namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
                     var expectedModel = JsonConvert.DeserializeObject<TodoModel>(responseContent);
                     expectedModel.ShouldBe(actualModel);
                 }))
-                .Next( x => x.Done());
+                .Done();
         }
 
     }
