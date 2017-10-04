@@ -14,6 +14,11 @@ namespace Expected.Request.Unit.Tests
         private Mock<IExpectRequest> _expectedRequestMock = new Mock<IExpectRequest>();
         private Mock<IRequest> _requestMock = new Mock<IRequest>();
 
+        public ExpectedRequestExtensionsTests()
+        {
+            
+        }
+
 
         [Fact]
         public async Task expect_should_convert_content_to_json_by_default()
