@@ -15,6 +15,11 @@ namespace Expected.Request
             var nextTaskResult = await nextTask(result);
             return nextTaskResult;
         }
+
+        public static async Task Done(this Task<IExpectRequest> expect)
+        {
+            await expect.Done();
+        }
     }
 
     public static class RequestExtensions
