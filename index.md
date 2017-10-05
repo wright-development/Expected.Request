@@ -38,7 +38,7 @@ var todoItem = new TodoModel {Text = "Walk the dog", Done = false };
 await request
     .Post("http://localhost:3000/api/todo", todoItem)
     .Next( x => x.ExpectOk())
-    .Next( x => x.Done());
+    .Done();
 ```
 
 Simple right? The idea behind Expected.Request is to test your APIs in a clear and cohesive way. Essentially you should be able to read your API tests. In this example we create a new request, post to the todo API with our model, then once the post is complete we expect the status code to be ok, and finally, we call done. Calling done at the end ensures that everything is disposed of properly.
@@ -65,7 +65,7 @@ await new Request()
         Assert.Equal(model.Checked, todoItem.Checked);
         Assert.Equal(model.Text, todoItem.Text);
     }))
-    .Next(x => x.Done());
+    .Done();
 ```
 
 Once again with a few calls, we have a fairly self-explanatory API test. 
@@ -98,7 +98,7 @@ public class ValuesApiTests
                 Assert.Equal(reponse.ElementAt(0)"value1");
                 Assert.Equal(reponse.ElementAt(1)"value2");
             }))
-            .Next(x => x.Done());
+            .Done();
     }
 }
 ```
