@@ -94,9 +94,9 @@ public class ValuesApiTests
         await new Request(_client)
             .Get("/api/values")
             .Next( x => x.ExpectOk())
-            .Next( x => x.Expect<IEnumerable<string>>(reponse)=>{
-                Assert.Equal(reponse.ElementAt(0)"value1");
-                Assert.Equal(reponse.ElementAt(1)"value2");
+            .Next( x => x.Expect<IEnumerable<string>>((reponse)=>{
+                Assert.Equal(reponse.ElementAt(0),"value1");
+                Assert.Equal(reponse.ElementAt(1),"value2");
             }))
             .Done();
     }

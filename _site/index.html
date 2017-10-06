@@ -10,15 +10,13 @@
 <meta property="og:locale" content="en_US" />
 <meta name="description" content="Expected.Request, a simple API testing framework." />
 <meta property="og:description" content="Expected.Request, a simple API testing framework." />
-<link rel="canonical" href="http://localhost:4000/" />
-<meta property="og:url" content="http://localhost:4000/" />
 <meta property="og:site_name" content="Welcome the Expected.Request’s documentation!" />
 <script type="application/ld+json">
-{"name":"Welcome the Expected.Request’s documentation!","description":"Expected.Request, a simple API testing framework.","author":null,"@type":"WebSite","url":"http://localhost:4000/","publisher":null,"image":null,"headline":"Welcome the Expected.Request’s documentation!","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
+{"name":"Welcome the Expected.Request’s documentation!","description":"Expected.Request, a simple API testing framework.","author":null,"@type":"WebSite","url":"/","publisher":null,"image":null,"headline":"Welcome the Expected.Request’s documentation!","dateModified":null,"datePublished":null,"sameAs":null,"mainEntityOfPage":null,"@context":"http://schema.org"}</script>
 <!-- End Jekyll SEO tag -->
 
 
-    <link rel="stylesheet" href="/assets/css/style.css?v=1fce98167937414e9771423ec8bdce0a8c016ae4">
+    <link rel="stylesheet" href="/assets/css/style.css?v=ca796bb340b22044d4a9fbeb43722c73b4c591f6">
     <meta name="viewport" content="width=device-width">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -130,9 +128,9 @@
         <span class="k">await</span> <span class="k">new</span> <span class="nf">Request</span><span class="p">(</span><span class="n">_client</span><span class="p">)</span>
             <span class="p">.</span><span class="nf">Get</span><span class="p">(</span><span class="s">"/api/values"</span><span class="p">)</span>
             <span class="p">.</span><span class="nf">Next</span><span class="p">(</span> <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="nf">ExpectOk</span><span class="p">())</span>
-            <span class="p">.</span><span class="nf">Next</span><span class="p">(</span> <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Expect</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;(</span><span class="n">reponse</span><span class="p">)=&gt;{</span>
-                <span class="n">Assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="n">reponse</span><span class="p">.</span><span class="nf">ElementAt</span><span class="p">(</span><span class="m">0</span><span class="p">)</span><span class="s">"value1"</span><span class="p">);</span>
-                <span class="n">Assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="n">reponse</span><span class="p">.</span><span class="nf">ElementAt</span><span class="p">(</span><span class="m">1</span><span class="p">)</span><span class="s">"value2"</span><span class="p">);</span>
+            <span class="p">.</span><span class="nf">Next</span><span class="p">(</span> <span class="n">x</span> <span class="p">=&gt;</span> <span class="n">x</span><span class="p">.</span><span class="n">Expect</span><span class="p">&lt;</span><span class="n">IEnumerable</span><span class="p">&lt;</span><span class="kt">string</span><span class="p">&gt;&gt;((</span><span class="n">reponse</span><span class="p">)=&gt;{</span>
+                <span class="n">Assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="n">reponse</span><span class="p">.</span><span class="nf">ElementAt</span><span class="p">(</span><span class="m">0</span><span class="p">),</span><span class="s">"value1"</span><span class="p">);</span>
+                <span class="n">Assert</span><span class="p">.</span><span class="nf">Equal</span><span class="p">(</span><span class="n">reponse</span><span class="p">.</span><span class="nf">ElementAt</span><span class="p">(</span><span class="m">1</span><span class="p">),</span><span class="s">"value2"</span><span class="p">);</span>
             <span class="p">}))</span>
             <span class="p">.</span><span class="nf">Done</span><span class="p">();</span>
     <span class="p">}</span>
