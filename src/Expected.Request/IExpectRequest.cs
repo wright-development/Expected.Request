@@ -11,6 +11,7 @@ namespace Expected.Request
     {
         Task<IRequest> Request();        
         Task<IExpectRequest> Expect(Action<HttpResponseMessage> expectedAction, string assertionMessage = null);        
+        Task<IExpectRequest> Expect(Func<HttpResponseMessage, Task> expectedAction, string assertionMessage = null);        
         Task<IDoneRequest> Done();
         
     }
