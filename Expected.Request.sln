@@ -8,7 +8,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expected.Request", "src\Exp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{88094B72-9B0D-487F-9437-677ABD97E8B9}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expected.Request.Integration.Tests", "test\Expected.Request.Tests\Expected.Request.Integration.Tests.csproj", "{2D944BFC-0634-4DA4-97D5-F1F1BBD7CBB7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Expected.Request.Integration.Tests", "test\Expected.Request.Integration.Tests\Expected.Request.Integration.Tests.csproj", "{2D944BFC-0634-4DA4-97D5-F1F1BBD7CBB7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Expected.Request.Unit.Tests", "test\Expected.Request.Unit.Tests\Expected.Request.Unit.Tests.csproj", "{E445882D-EF56-4D78-9B3E-8094F4066E9E}"
 EndProject

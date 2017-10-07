@@ -4,6 +4,7 @@ using Expected.Request.Tests.Builders;
 using Shouldly;
 using System.Threading.Tasks;
 using System;
+using Expected.Request.Extensions;
 
 namespace Expected.Request.Tests.IntegrationTests.ExpectedRequest
 {

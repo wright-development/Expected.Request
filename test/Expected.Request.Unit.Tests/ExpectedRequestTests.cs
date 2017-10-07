@@ -5,6 +5,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using Expected.Request.Converter;
 using Expected.Request.Exceptions;
+using Expected.Request.Extensions;
 using Moq;
 using Shouldly;
 using Xunit;
@@ -15,6 +16,7 @@ namespace Expected.Request.Unit.Tests
     {
         private ExpectRequest _classUnderTest;
         private HttpResponseMessage _response;
+        private HttpClient _client;
         private Mock<IContentConverter<Object>> _contentConverter;
         private string _content = "foo_content";
 
@@ -24,8 +26,9 @@ namespace Expected.Request.Unit.Tests
             _response = new HttpResponseMessage(HttpStatusCode.OK);
             _response.Content = new StringContent(_content);
             _response.Headers.Add("FooHeader", new List<string>{"FooValue"});
+            _client = new HttpClient();
 
-            _classUnderTest = new ExpectRequest(_response);     
+            _classUnderTest = new ExpectRequest(_response, _client);     
             _contentConverter = new Mock<IContentConverter<Object>>();
         }
 
@@ -39,6 +42,14 @@ namespace Expected.Request.Unit.Tests
         }
 
         [Fact]
+        public async Task should_return_content()
+        {
+            string content = null;
+            await _classUnderTest.GetContent((c)=> content = c);
+            content.ShouldBe(_content);
+        }
+
+        [Fact]
         public async Task should_not_throw_an_exception_of_expectation_doesnt_fail()
         {
             await _classUnderTest.Expect((r)=>{});
@@ -47,8 +58,6 @@ namespace Expected.Request.Unit.Tests
         [Fact]
         public async Task should_throw_expected_exception_when_the_status_code_is_incorrect()
         {
-            _classUnderTest = new ExpectRequest(_response);
-
             await Should.ThrowAsync<ExpectedException>( async ()=> {
                 await _classUnderTest.ExpectStatusCode(HttpStatusCode.NotFound);
             });

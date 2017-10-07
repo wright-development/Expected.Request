@@ -13,63 +13,39 @@ namespace Expected.Request
     public class ExpectRequest : IExpectRequest
     {
         private HttpResponseMessage _response;
+        private HttpClient _client;
+        public static readonly string DefaultMessage = "The custom expectation threw an exception.";
 
-        public ExpectRequest(HttpResponseMessage response)
+        public ExpectRequest(HttpResponseMessage response, HttpClient client)
         {
             _response = response;
+            _client = client;
         }
 
-        public async Task<IExpectRequest> ExpectStatusCode(HttpStatusCode code)
+        public async Task<IExpectRequest> Expect(Action<HttpResponseMessage> expectedAction, string assertMessage = null)
         {
-            RethrowOnException(
-                () => Assert.Equal(code, _response.StatusCode),
-                $"The actual status code {_response.StatusCode} does not match the expected status code {code}."
-            );
-            return await Task.FromResult(this);
-        }
-
-        private void RethrowOnException(Action action, string message)
-        {
-            try
+            if(assertMessage == null) 
             {
-                action();
+                assertMessage = DefaultMessage;
             }
-            catch (Exception e)
-            {
-                throw new ExpectedException(message, e);
-            }
-        }
 
-        public async Task<IExpectRequest> Expect(Action<HttpResponseMessage> expectedAction)
-        {
             RethrowOnException(
                 () => expectedAction(_response),
-                "The custom expectation threw an exception."
+                assertMessage
             );
             return await Task.FromResult(this);
         }
 
-        public async Task<IExpectRequest> Expect<T>(Action<T> expectedAction, IContentConverter<T> converter)
+        public async Task<IRequest> Request()
         {
-            var content = await _response.Content.ReadAsStringAsync();
-            RethrowOnException(
-                () => expectedAction(converter.ConvertToObject(content)),
-                "The custom expectation threw an exception."
-            );
-            return this;
-        }
-
-        
-        public async Task<IRequest> Request(HttpClient client = null)
-        {
-            Dispose();
-            return await Task.FromResult(new Request(client));
+            _response.Dispose();
+            return await Task.FromResult(new Request(_client));
         }
 
         public void Dispose()
         {
+            _client.Dispose();
             _response.Dispose();
-            
         }
 
         public async Task<IDoneRequest> Done()
@@ -78,45 +54,26 @@ namespace Expected.Request
             return await Task.FromResult(new DoneRequest());
         }
 
-        public async Task<IExpectRequest> Map<T>(Action<T> expectedAction, IContentConverter<T> converter)
+        public async Task<IExpectRequest> GetContent(Action<string> retieveContent)
         {
-            var content = await _response.Content.ReadAsStringAsync();
-            expectedAction(converter.ConvertToObject(content));
-            return await Task.FromResult(this);
+            retieveContent(await _response.Content.ReadAsStringAsync());
+            return this;
         }
 
-        public async Task<IExpectRequest> ExpectHeader(string header)
+        private void RethrowOnException(Action action, string message)
         {
-            RethrowOnException(
-                () => Assert.True(_response.Headers.Contains(header)),
-                $"The header ${header} was not found in the reponse's headers"
-            );
-            return await Task.FromResult(this);
-        }
-
-        public async Task<IExpectRequest> ExpectHeader(string header, string value)
-        {
-            await ExpectHeader(header);
-            IEnumerable<string> values = null;
-            
-            RethrowOnException(
-                () =>
-                {
-                    if (_response.Headers.TryGetValues(header, out values))
-                    {
-                        Assert.Equal(values.First(), value);
-                    }
-                    else
-                    {
-                        throw new Exception();
-                    }
-                },
-                $"Unabled to parse the header ${header}'s values"
-            );
-
-
-
-            return await Task.FromResult(this);
+            try
+            {
+                action();
+            }
+            catch(ExpectedException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw new ExpectedException(message, e);
+            }
         }
     }
 }

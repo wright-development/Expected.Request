@@ -4,7 +4,7 @@ using System.Threading.Tasks;
 
 namespace Expected.Request
 {
-    public interface IRequest : IDisposable
+    public interface IRequest
     {
         IRequest AddHeader(string key, string value);
         IRequest WithTimeout(TimeSpan span);
