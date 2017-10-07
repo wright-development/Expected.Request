@@ -41,7 +41,7 @@ namespace Expected.Request.Unit.Tests.Converter
         }
 
         [Fact]
-        public void handles_plain_string_content()
+        public void should_handle_string_type_content_conversion()
         {
             var classUnderTest = new JsonContentConverter<string>();
             var result = classUnderTest.ConvertToObject("content");
