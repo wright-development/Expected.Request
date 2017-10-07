@@ -6,7 +6,7 @@ using Expected.Request.Converter;
 using Moq;
 using Xunit;
 
-namespace Expected.Request.Unit.Tests
+namespace Expected.Request.Unit.Tests.Extensions
 {
     public class RequestExtensionsTests
     {

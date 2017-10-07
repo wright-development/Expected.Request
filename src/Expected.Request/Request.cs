@@ -7,7 +7,6 @@ namespace Expected.Request
     public class Request : IRequest
     {
         private HttpClient _client;
-        private bool _clientSupplied = false;
 
         public Request() : this(new HttpClient())
         {
@@ -20,10 +19,6 @@ namespace Expected.Request
             {
                 client = new HttpClient();
             }
-            else 
-            {
-                _clientSupplied = true;
-            }
 
             _client = client;
         }
@@ -32,40 +27,33 @@ namespace Expected.Request
         public async Task<IExpectRequest> Delete(string url)
         {
             var response = await _client.DeleteAsync(url);
-            Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectRequest(response, _client);
         }
 
         public async Task<IExpectRequest> Get(string url)
         {
             var response = await _client.GetAsync(url);
-            Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectRequest(response, _client);
         }
 
         public async Task<IExpectRequest> Post(string url, HttpContent content)
         {
             var response = await _client.PostAsync(url, content);
-            Dispose();            
-            return new ExpectRequest(response);
+            return new ExpectRequest(response, _client);
         }
 
         public async Task<IExpectRequest> Put(string url, HttpContent content)
         {
             var response = await _client.PutAsync(url, content);
-            Dispose();
-            return new ExpectRequest(response);
-        }
-
-        public void Dispose()
-        {
-            if(!_clientSupplied) {
-                _client.Dispose();
-            }
+            return new ExpectRequest(response, _client);
         }
 
         public IRequest AddHeader(string key, string value)
         {
+            if(_client.DefaultRequestHeaders.Contains(key))
+            {
+                _client.DefaultRequestHeaders.Remove(key);
+            }
             _client.DefaultRequestHeaders.Add(key,value);
             return this;
         }
