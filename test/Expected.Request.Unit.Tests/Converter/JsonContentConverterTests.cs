@@ -43,8 +43,11 @@ namespace Expected.Request.Unit.Tests.Converter
         [Fact]
         public void should_handle_string_type_content_conversion()
         {
+            var content = "content";
             var classUnderTest = new JsonContentConverter<string>();
-            var result = classUnderTest.ConvertToObject("content");
+            var result = classUnderTest.ConvertToObject(content);
+
+            content.ShouldBe(result);
         }
     }
 }
