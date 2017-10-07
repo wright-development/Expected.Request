@@ -69,5 +69,36 @@ namespace Expected.Request
                 throw new ExpectedException(message, e);
             }
         }
+
+        private async Task RethrowOnException(Func<Task> action, string message)
+        {
+            try
+            {
+                await action();
+            }
+            catch(ExpectedException e)
+            {
+                throw e;
+            }
+            catch (Exception e)
+            {
+                throw new ExpectedException(message, e);
+            }
+        }
+
+        public async Task<IExpectRequest> Expect(Func<HttpResponseMessage, Task> expectedAction, string assertMessage = null)
+        {
+            
+            if(assertMessage == null) 
+            {
+                assertMessage = DefaultMessage;
+            }
+
+            await RethrowOnException(
+                async () => await expectedAction(_response),
+                assertMessage
+            );
+            return await Task.FromResult(this);
+        }
     }
 }
