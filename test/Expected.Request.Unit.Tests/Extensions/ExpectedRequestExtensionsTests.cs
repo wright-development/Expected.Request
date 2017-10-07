@@ -64,6 +64,16 @@ namespace Expected.Request.Unit.Tests.Extensions
         }
 
         [Fact]
+        public async Task should_throw_exception_if_unable_to_do_custom_content_expectation()
+        {
+            var exception = await Should.ThrowAsync<ExpectedException>(async ()=>{
+                await _classUnderTest.ExpectContent((content)=> throw new Exception());
+            });
+
+            exception.Message.ShouldBe(GetCustomExpectedContentErrorMessage());
+        }
+
+        [Fact]
         public async Task should_map_the_object_from_the_content()
         {
             var obj = new {Prop = "Value"};

@@ -34,10 +34,22 @@ namespace Expected.Request.Unit.Tests
 
 
         [Fact]
-        public async Task should_throw_an_expected_exception_if_an_exception_is_thrown()
+        public async Task should_throw_an_expected_exception_if_an_exception_is_thrown_from_action()
         {
+            Action<HttpResponseMessage> action = (r) => throw new Exception();
+
             await Should.ThrowAsync<ExpectedException>(async ()=> {
-                await _classUnderTest.Expect((r) => throw new Exception());
+                await _classUnderTest.Expect(action);
+            });
+        }
+
+        [Fact]
+        public async Task should_throw_an_expected_exception_if_an_exception_is_thrown_from_function()
+        {
+            Func<HttpResponseMessage, Task> function = (r) => throw new Exception();
+
+            await Should.ThrowAsync<ExpectedException>(async ()=> {
+                await _classUnderTest.Expect(function);
             });
         }
 
@@ -65,7 +77,7 @@ namespace Expected.Request.Unit.Tests
         }
 
         [Fact]
-        public async Task should_use_thrown_expected_exception_message_over_custom_messae()
+        public async Task should_use_thrown_expected_exception_message_over_custom_message()
         {
             
             var errorMessage = "foo message";
@@ -78,9 +90,51 @@ namespace Expected.Request.Unit.Tests
         }
 
         [Fact]
-        public async Task should_not_throw_an_exception_of_expectation_doesnt_fail()
+        public async Task should_not_throw_an_exception_of_expectation_doesnt_fail_with_action()
         {
             await _classUnderTest.Expect((r)=>{});
+        }
+        
+        [Fact]
+        public async Task should_not_throw_an_exception_of_expectation_doesnt_fail_with_function()
+        {
+            Func<HttpResponseMessage, Task> func = async (r)=> await r.Content.ReadAsStringAsync();
+            await _classUnderTest.Expect(func);
+        }
+
+        [Fact]
+        public async Task should_dispose_of_client_after_done()
+        {
+            await _classUnderTest.Done();
+
+            await Should.ThrowAsync<ObjectDisposedException>(async()=>{
+                await _client.GetAsync("https://www.google.com");
+            });
+        }
+
+        [Fact]
+        public async Task should_not_dispose_of_client_on_new_request()
+        {
+            await _classUnderTest.Request();
+            await _client.GetAsync("https://www.google.com");
+        }
+
+        [Fact]
+        public async Task should_dispose_of_response_after_done()
+        {
+            await _classUnderTest.Done();
+            await Should.ThrowAsync<ObjectDisposedException>(async()=>{
+                await _response.Content.ReadAsStringAsync();
+            });
+        }
+
+        [Fact]
+        public async Task should_dispose_of_response_on_new_request()
+        {
+            await _classUnderTest.Request();
+            await Should.ThrowAsync<ObjectDisposedException>(async()=>{
+                await _response.Content.ReadAsStringAsync();
+            });
         }
     }
 }
