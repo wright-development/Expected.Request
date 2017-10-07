@@ -48,11 +48,7 @@ namespace Expected.Request
             _response.Dispose();
         }
 
-        public async Task<IDoneRequest> Done()
-        {
-            Dispose();
-            return await Task.FromResult(new DoneRequest());
-        }
+        
 
         private void RethrowOnException(Action action, string message)
         {
@@ -99,6 +95,12 @@ namespace Expected.Request
                 assertMessage
             );
             return await Task.FromResult(this);
+        }
+
+        public async Task<IDoneRequest> Done()
+        {
+            Dispose();
+            return await Task.FromResult(new DoneRequest());
         }
     }
 }
