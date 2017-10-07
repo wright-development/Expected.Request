@@ -1,15 +1,13 @@
 using System;
-using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Expected.Request.Converter;
 using Moq;
 using Xunit;
 using Expected.Request.Extensions;
-using Expected.Request.Converter;
-using Expected.Request.Unit.Tests.Converter;
-using Expected.Request.Exceptions;
+using static Expected.Request.Extensions.ExpectRequestExtensions;
 using Shouldly;
+using Expected.Request.Exceptions;
 
 namespace Expected.Request.Unit.Tests.Extensions
 {
@@ -36,6 +34,33 @@ namespace Expected.Request.Unit.Tests.Extensions
             string content = null;
             await _classUnderTest.GetContent((c)=> content = c);
             content.ShouldBe(_content);
+        }
+
+        [Fact]
+        public async Task should_not_throw_an_exception_if_the_content_matches()
+        {
+            await _classUnderTest.ExpectContent(_content);
+        }
+
+        [Fact]
+        public async Task should_throw_exception_if_content_does_not_match()
+        {
+            var expectedContent = "not_the_right_content";
+            var exception = await Should.ThrowAsync<ExpectedException>(async()=>{
+                await _classUnderTest.ExpectContent(expectedContent);
+            });
+
+            exception.Message.ShouldBe(GetExpectedContentErrorMessage(expectedContent, _content));
+        }
+
+        [Fact]
+        public async Task should_throw_expection_if_unable_to_retieve_content()
+        {
+            var exception = await Should.ThrowAsync<ExpectedException>(async()=>{
+                await _classUnderTest.GetContent((content)=> throw new Exception());
+            });
+
+            exception.Message.ShouldBe(GetContentErrorMessage());
         }
 
         [Fact]
