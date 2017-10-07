@@ -39,5 +39,12 @@ namespace Expected.Request.Unit.Tests.Converter
         {
             _classUnderTest.ContentType.ShouldBe("application/json");
         }
+
+        [Fact]
+        public void handles_plain_string_content()
+        {
+            var classUnderTest = new JsonContentConverter<string>();
+            var result = classUnderTest.ConvertToObject("content");
+        }
     }
 }

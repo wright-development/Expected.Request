@@ -13,6 +13,10 @@ namespace Expected.Request.Converter
 
         public T ConvertToObject(string content)
         {
+            if(typeof(T) == typeof(string))
+            {
+                content = $"\"{content}\"";
+            }
             return JsonConvert.DeserializeObject<T>(content);
         }
     }
