@@ -42,87 +42,45 @@ namespace Expected.Request.Unit.Tests
         }
 
         [Fact]
-        public async Task should_return_content()
+        public async Task should_use_default_message_for_expected_exception_if_custom_not_specified()
         {
-            string content = null;
-            await _classUnderTest.GetContent((c)=> content = c);
-            content.ShouldBe(_content);
+            
+            var exception = await Should.ThrowAsync<ExpectedException>(async ()=>{
+                await _classUnderTest.Expect((r)=> throw new Exception());
+            });
+
+            exception.Message.ShouldBe(ExpectRequest.DefaultMessage);
+        }
+
+        [Fact]
+        public async Task should_use_custom_message_for_expected_exception()
+        {
+            var errorMessage = "foo message";
+            
+            var exception = await Should.ThrowAsync<ExpectedException>(async ()=>{
+                await _classUnderTest.Expect((r)=> throw new Exception(), errorMessage);
+            });
+
+            exception.Message.ShouldBe(errorMessage);
+        }
+
+        [Fact]
+        public async Task should_use_thrown_expected_exception_message_over_custom_messae()
+        {
+            
+            var errorMessage = "foo message";
+            
+            var exception = await Should.ThrowAsync<ExpectedException>(async ()=>{
+                await _classUnderTest.Expect((r)=> throw new ExpectedException(errorMessage), "foobar");
+            });
+
+            exception.Message.ShouldBe(errorMessage);
         }
 
         [Fact]
         public async Task should_not_throw_an_exception_of_expectation_doesnt_fail()
         {
             await _classUnderTest.Expect((r)=>{});
-        }
-
-        [Fact]
-        public async Task should_throw_expected_exception_when_the_status_code_is_incorrect()
-        {
-            await Should.ThrowAsync<ExpectedException>( async ()=> {
-                await _classUnderTest.ExpectStatusCode(HttpStatusCode.NotFound);
-            });
-        }
-
-        [Fact]
-        public async Task should_not_throw_an_exception_when_status_code_is_correct()
-        {
-            await _classUnderTest.ExpectStatusCode(HttpStatusCode.OK);
-        }
-
-        [Fact]
-        public async Task should_throw_expected_exception_if_header_is_missing()
-        {
-            await Should.ThrowAsync<ExpectedException>(async () => {
-                await _classUnderTest.ExpectHeader("MissingFooHeader");
-            });
-        }
-
-        [Fact]
-        public async Task should_not_throw_an_exception_if_headers_exist()
-        {
-            await _classUnderTest.ExpectHeader("FooHeader");
-        }
-
-        [Fact]
-        public async Task should_throw_expected_exception_if_header_value_is_missing()
-        {
-            await Should.ThrowAsync<ExpectedException>(async () => {
-                await _classUnderTest.ExpectHeader("FooHeader", "MissingValue");
-            });
-        }
-
-        [Fact]
-        public async Task should_not_throw_exception_if_header_value_is_present()
-        {
-            await _classUnderTest.ExpectHeader("FooHeader", "FooValue");
-        }
-
-        public async Task should_map_the_object_from_the_content()
-        {
-            var obj = new {Prop = "Value"};
-            _contentConverter.Setup(x => x.ConvertToObject(_content))
-                .Returns(obj);
-
-            await _classUnderTest.Expect<Object>((o)=>{
-                o.Equals(obj);
-            }, _contentConverter.Object);
-
-            _contentConverter.Verify(x => x.ConvertToObject(_content));
-        }
-
-
-        public async Task should_convert_to_object_with_generic_expectation()
-        {
-            await _classUnderTest.Expect<Object>((o)=>{}, _contentConverter.Object);
-
-            _contentConverter.Verify(x => x.ConvertToObject(_content));
-        }
-
-        public async Task should_throw_expected_exception_if_generic_action_fails()
-        {
-            await Should.ThrowAsync<ExpectedException>(async () => {
-                await _classUnderTest.Expect<Object>((o)=>throw new Exception(), _contentConverter.Object);
-            });
         }
     }
 }

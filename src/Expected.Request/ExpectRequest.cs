@@ -54,12 +54,6 @@ namespace Expected.Request
             return await Task.FromResult(new DoneRequest());
         }
 
-        public async Task<IExpectRequest> GetContent(Action<string> retieveContent)
-        {
-            retieveContent(await _response.Content.ReadAsStringAsync());
-            return this;
-        }
-
         private void RethrowOnException(Action action, string message)
         {
             try

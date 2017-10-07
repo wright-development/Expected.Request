@@ -6,19 +6,50 @@ using Expected.Request.Converter;
 using Moq;
 using Xunit;
 using Expected.Request.Extensions;
+using Expected.Request.Converter;
 using Expected.Request.Unit.Tests.Converter;
+using Expected.Request.Exceptions;
+using Shouldly;
 
 namespace Expected.Request.Unit.Tests.Extensions
 {
     public class ExpectedRequestExtensionsTests
     {
         private string _urlToRequest = "https://localhost:8080";
-        private Mock<IExpectRequest> _expectedRequestMock = new Mock<IExpectRequest>();
+        private string _content = "foo_content";
+        private ExpectRequest _classUnderTest;
+        private Mock<IExpectRequest> _mockUnderTest = new Mock<IExpectRequest>();
         private Mock<IRequest> _requestMock = new Mock<IRequest>();
+        private Mock<IContentConverter<Object>> _contentConverter = new Mock<IContentConverter<Object>>();
+        private HttpResponseMessage _response = new HttpResponseMessage();
+        private HttpClient _client = new HttpClient();
 
         public ExpectedRequestExtensionsTests()
         {
-            
+            _response.Content = new StringContent(_content);
+            _classUnderTest = new ExpectRequest(_response,_client);
+        }
+
+        [Fact]
+        public async Task should_return_content()
+        {
+            string content = null;
+            await _classUnderTest.GetContent((c)=> content = c);
+            content.ShouldBe(_content);
+        }
+
+        [Fact]
+        public async Task should_map_the_object_from_the_content()
+        {
+            var obj = new {Prop = "Value"};
+            _contentConverter.Setup(x => x.ConvertToObject(_content))
+                .Returns(obj);
+
+            await _classUnderTest.Expect<Object>((o)=>{
+                o.Equals(obj);
+            }, _contentConverter.Object);
+
+            _contentConverter.Verify(x => x.ConvertToObject(_content));
         }
 
         [Fact]
@@ -26,9 +57,9 @@ namespace Expected.Request.Unit.Tests.Extensions
         {
             SetupRequest();
             
-            await _expectedRequestMock.Object.Get(_urlToRequest);
+            await _mockUnderTest.Object.Get(_urlToRequest);
 
-            _expectedRequestMock.Verify( x => x.Request());
+            _mockUnderTest.Verify( x => x.Request());
             _requestMock.Verify( x => x.Get(_urlToRequest));
         }
 
@@ -37,9 +68,9 @@ namespace Expected.Request.Unit.Tests.Extensions
         {
             SetupRequest();
 
-            await _expectedRequestMock.Object.Post(_urlToRequest, null);
+            await _mockUnderTest.Object.Post(_urlToRequest, null);
 
-            _expectedRequestMock.Verify(x => x.Request());
+            _mockUnderTest.Verify(x => x.Request());
             _requestMock.Verify( x => x.Post(_urlToRequest, null));
         }
 
@@ -48,9 +79,9 @@ namespace Expected.Request.Unit.Tests.Extensions
         {
             SetupRequest();
 
-            await _expectedRequestMock.Object.Delete(_urlToRequest);
+            await _mockUnderTest.Object.Delete(_urlToRequest);
 
-            _expectedRequestMock.Verify(x => x.Request());
+            _mockUnderTest.Verify(x => x.Request());
             _requestMock.Verify(x => x.Delete(_urlToRequest));
         }
 
@@ -59,11 +90,12 @@ namespace Expected.Request.Unit.Tests.Extensions
         {
             SetupRequest();
 
-            await _expectedRequestMock.Object.Put(_urlToRequest, It.Is<HttpContent>(x => x == null));        
+            await _mockUnderTest.Object.Put(_urlToRequest, It.Is<HttpContent>(x => x == null));        
 
-            _expectedRequestMock.Verify(x => x.Request());
+            _mockUnderTest.Verify(x => x.Request());
             _requestMock.Verify( x => x.Put( _urlToRequest,null));
         }
+
 
         private void SetupRequest(Func<HttpClient, bool> requestCheck = null)
         {
@@ -72,7 +104,7 @@ namespace Expected.Request.Unit.Tests.Extensions
                 requestCheck = (HttpClient h) => h == null;
             }
 
-            _expectedRequestMock.Setup(x => x.Request())
+            _mockUnderTest.Setup(x => x.Request())
                 .Returns(Task.FromResult(_requestMock.Object));
         }
     }

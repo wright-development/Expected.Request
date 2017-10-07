@@ -63,7 +63,7 @@ namespace Expected.Request.Unit.Tests.Extensions
                 .ShouldBe(GetStatusCodeError(HttpStatusCode.OK, _response.StatusCode));
         }
 
-         [Fact]
+        [Fact]
         public async Task should_not_throw_exception_if_status_code_ok_for_expected_not_found()
         {
             _response.StatusCode = HttpStatusCode.NotFound;
@@ -83,7 +83,7 @@ namespace Expected.Request.Unit.Tests.Extensions
                 .ShouldBe(GetStatusCodeError(HttpStatusCode.NotFound, _response.StatusCode));
         }
 
-         [Fact]
+        [Fact]
         public async Task should_not_throw_exception_if_status_code_ok_for_expected_unavailable()
         {
             _response.StatusCode = HttpStatusCode.ServiceUnavailable;

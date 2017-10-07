@@ -50,6 +50,10 @@ namespace Expected.Request
 
         public IRequest AddHeader(string key, string value)
         {
+            if(_client.DefaultRequestHeaders.Contains(key))
+            {
+                _client.DefaultRequestHeaders.Remove(key);
+            }
             _client.DefaultRequestHeaders.Add(key,value);
             return this;
         }
