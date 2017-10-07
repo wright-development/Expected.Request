@@ -8,6 +8,7 @@ using Shouldly;
 using Expected.Request.Exceptions;
 using Expected.Request.Tests.Builders;
 using System.Threading.Tasks;
+using Expected.Request.Extensions;
 
 namespace Expected.Request.Tests.IntegrationTests
 {
