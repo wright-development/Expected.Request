@@ -150,7 +150,7 @@ a small { font-size: 11px; color: #777; margin-top: -0.3em; display: block; }
 
 a:hover small { color: #777; }
 
-.wrapper { width: 860px; margin: 0 auto; }
+.wrapper { width: 950px; margin: 0 auto; }
 
 blockquote { border-left: 1px solid #e5e5e5; margin: 0; padding: 0 0 0 20px; font-style: italic; }
 
@@ -170,19 +170,11 @@ img { max-width: 100%; }
 
 header { width: 270px; float: left; position: fixed; -webkit-font-smoothing: subpixel-antialiased; }
 
-header ul { list-style: none; height: 40px; padding: 0; background: #f4f4f4; border-radius: 5px; border: 1px solid #e0e0e0; width: 270px; }
+.menu { padding-bottom: 20px; }
 
-header li { width: 89px; float: left; border-right: 1px solid #e0e0e0; height: 40px; }
+.menu li:first-child { padding-bottom: 15px; }
 
-header li:first-child a { border-radius: 5px 0 0 5px; }
-
-header li:last-child a { border-radius: 0 5px 5px 0; }
-
-header ul a { line-height: 1; font-size: 11px; color: #676767; display: block; text-align: center; padding-top: 6px; height: 34px; }
-
-header ul a:hover, header ul a:focus { color: #675C5C; font-weight: bold; }
-
-header ul a:active { background-color: #f0f0f0; }
+.menu li { list-style: none; }
 
 strong { color: #222; font-weight: 700; }
 
@@ -190,7 +182,7 @@ header ul li + li + li { border-right: none; width: 89px; }
 
 header ul a strong { font-size: 14px; display: block; color: #222; }
 
-section { width: 500px; float: right; padding-bottom: 50px; }
+section { width: 650px; float: right; padding-bottom: 50px; }
 
 small { font-size: 11px; }
 
