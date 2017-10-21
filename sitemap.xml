@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/add-header/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/content-converter/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/delete/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/expect-request/done/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/done-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/expect-request/expect/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/expect-request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/expect-request/extensions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/get/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/pages/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/pages/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/post/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/put/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/expect-request/request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/extensions/</loc>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/tags/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/topics/</loc>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>https://wright-development.github.io/api/request/with-timeout/</loc>
+  </url>
+  
+</urlset>
