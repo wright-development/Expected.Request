@@ -1,0 +1,241 @@
+<head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="{{ if .IsNode }}{{ with .Site.Params.description }}{{ . }}{{ end }}{{ else }}{{ with .Description }}{{ . }}{{ end }}{{ end }}">
+  {{.Hugo.Generator}}
+
+  <title>{{ if .IsHome }}{{ .Title }}{{ else }}{{ .Title }} &middot; {{ .Site.Title }}{{ end }}</title>
+
+  <!-- CSS -->
+  {{ $purecss := "https://cdnjs.cloudflare.com/ajax/libs/pure/1.0.0/" }}
+  <link rel="stylesheet" href="{{ $purecss }}pure-min.css">
+
+  {{ "<!--[if lte IE 8]>" | safeHTML }}
+  <link rel="stylesheet" href="{{ $purecss }}grids-responsive-old-ie-min.css">
+  {{ "<![endif]-->" | safeHTML }}
+  {{ "<!--[if gt IE 8]><!-->" | safeHTML }}
+  <link rel="stylesheet" href="{{ $purecss }}grids-responsive-min.css">
+  {{ "<!--<![endif]-->" | safeHTML }}
+
+  {{ "<!--[if lte IE 8]>" | safeHTML }}
+  <link rel="stylesheet" href="/css/side-menu-old-ie.css">
+  {{ "<![endif]-->" | safeHTML }}
+  {{ "<!--[if gt IE 8]><!-->" | safeHTML }}
+  <link rel="stylesheet" href="/css/side-menu.css">
+  {{ "<!--<![endif]-->" | safeHTML }}
+
+  <link rel="stylesheet" href="/css/blackburn.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+
+  <!-- RSS -->
+  {{ if .RSSLink }}
+  <link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }}" href="{{ .RSSLink }}" />
+  {{ end }}
+
+  {{ with .Site.Params.highlightjs }}
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/{{ . }}.min.css">
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  {{ range $.Site.Params.highlightjs_extra_languages }}
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/{{ . }}.min.js"></script>
+  {{ end }}
+  <script>hljs.initHighlightingOnLoad();</script>
+  {{ end }}
+
+  {{ partial "favicon.html" . }}
+
+  {{ range .Site.Params.custom_css }}
+    <link rel="stylesheet" href="{{ $.Site.BaseURL }}{{ . }}">
+  {{ end }}
+  {{ range .Site.Params.custom_js }}
+    <script src="{{ $.Site.BaseURL }}{{ . }}"></script>
+  {{ end }}
+
+  <style>
+    pre {
+        overflow: hidden !important;
+    }    
+</style>
+<style>
+    pre {
+        overflow: hidden !important;
+    }
+    
+    .comment-form {
+        font: 95% Arial, Helvetica, sans-serif;
+        max-width: 400px;
+        margin: 10px auto;
+        padding: 16px;
+        background: #F7F7F7;
+    }
+
+    .comment-form h1 {
+        background: #02A854;
+        padding: 20px 0;
+        font-size: 140%;
+        font-weight: 300;
+        text-align: center;
+        color: #fff;
+        margin: -16px -16px 16px -16px;
+    }
+
+    .comment-form input[type="text"],
+    .comment-form input[type="date"],
+    .comment-form input[type="datetime"],
+    .comment-form input[type="email"],
+    .comment-form input[type="number"],
+    .comment-form input[type="search"],
+    .comment-form input[type="time"],
+    .comment-form input[type="url"],
+    .comment-form textarea,
+    .comment-form select {
+        -webkit-transition: all 0.30s ease-in-out;
+        -moz-transition: all 0.30s ease-in-out;
+        -ms-transition: all 0.30s ease-in-out;
+        -o-transition: all 0.30s ease-in-out;
+        outline: none;
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 100%;
+        background: #fff;
+        margin-bottom: 4%;
+        border: 1px solid #ccc;
+        padding: 3%;
+        color: #555;
+        font: 95% Arial, Helvetica, sans-serif;
+    }
+
+    .comment-form input[type="text"]:focus,
+    .comment-form input[type="date"]:focus,
+    .comment-form input[type="datetime"]:focus,
+    .comment-form input[type="email"]:focus,
+    .comment-form input[type="number"]:focus,
+    .comment-form input[type="search"]:focus,
+    .comment-form input[type="time"]:focus,
+    .comment-form input[type="url"]:focus,
+    .comment-form textarea:focus,
+    .comment-form select:focus {
+        box-shadow: 0 0 5px #02A854;
+        padding: 3%;
+        border: 1px solid #02A854;
+    }
+
+    .comment-form button[type="submit"],
+    .comment-form button[type="button"] {
+        box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        width: 100%;
+        padding: 3%;
+        background: #02A854;
+        border-bottom: 2px solid #25B46B;
+        border-top-style: none;
+        border-right-style: none;
+        border-left-style: none;
+        color: #fff;
+    }
+
+    .comment-form button[type="submit"]:hover,
+    .comment-form button[type="button"]:hover {
+        background: #49C285;
+    }
+
+    .comment-form button[type="submit"]:disabled,
+    .comment-form button[type="button"]:disabled {
+        background: lightgrey;
+        border-bottom: grey;
+        
+    }
+
+</style>
+<style>
+    /*font Awesome http://fontawesome.io*/
+@import url(//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css);
+/*Comment List styles*/
+.comment-list .row {
+background: #F7F7F7;
+padding: 0px 25px;
+padding-top: 5px;
+padding-bottom: 15px;
+margin: 25px 0;
+}
+.comment-list .panel .panel-heading {
+padding: 4px 15px;
+position: absolute;
+border:none;
+/*Panel-heading border radius*/
+border-top-right-radius:0px;
+top: 1px;
+}
+.comment-list .panel .panel-heading.right {
+border-right-width: 0px;
+/*Panel-heading border radius*/
+border-top-left-radius:0px;
+right: 16px;
+}
+.comment-list .panel .panel-heading .panel-body {
+padding-top: 6px;
+}
+.comment-list figcaption {
+/*For wrapping text in thumbnail*/
+word-wrap: break-word;
+}
+/* Portrait tablets and medium desktops */
+@media (min-width: 768px) {
+.comment-list .arrow:after, .comment-list .arrow:before {
+content: "";
+position: absolute;
+width: 0;
+height: 0;
+border-style: solid;
+border-color: transparent;
+}
+.comment-list .panel.arrow.left:after, .comment-list .panel.arrow.left:before {
+border-left: 0;
+}
+/*****Left Arrow*****/
+/*Outline effect style*/
+.comment-list .panel.arrow.left:before {
+left: 0px;
+top: 30px;
+/*Use boarder color of panel*/
+border-right-color: inherit;
+border-width: 16px;
+}
+/*Background color effect*/
+.comment-list .panel.arrow.left:after {
+left: 1px;
+top: 31px;
+/*Change for different outline color*/
+border-right-color: #FFFFFF;
+border-width: 15px;
+}
+/*****Right Arrow*****/
+/*Outline effect style*/
+.comment-list .panel.arrow.right:before {
+right: -16px;
+top: 30px;
+/*Use boarder color of panel*/
+border-left-color: inherit;
+border-width: 16px;
+}
+/*Background color effect*/
+.comment-list .panel.arrow.right:after {
+right: -14px;
+top: 31px;
+/*Change for different outline color*/
+border-left-color: #FFFFFF;
+border-width: 15px;
+}
+}
+.comment-list .comment-post {
+margin-top: 6px;
+}
+</style>
+
+</head>
