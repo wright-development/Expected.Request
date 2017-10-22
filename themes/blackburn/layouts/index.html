@@ -9,7 +9,7 @@
 
 <div class="content">
   {{ range ( .Paginate (where .Data.Pages "Type" "pages")).Pages }}
-    {{ .Render "single"}}
+    {{ .Render "first"}}
   {{ end }}
 
   {{ partial "pagination.html" . }}

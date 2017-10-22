@@ -12,6 +12,18 @@
     
     
     <item>
+      <title></title>
+      <link>https://wright-development.github.io/Expected.Request/pages/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://wright-development.github.io/Expected.Request/pages/</guid>
+      <description>Documentation in progress. Please notify me of any issues.
+Just as the name suggests Expected.Request helps you define what you expect out of your requests.
+Expected Request is a Fluent API that guides you through your API testing, and it all starts by creating a new Request.
+Installation You can install Expected.Request by copying and pasting the following command into your Package Manager Console within Visual Studio (Tools &amp;gt; NuGet Package Manager &amp;gt; Package Manager Console).</description>
+    </item>
+    
+    <item>
       <title>AddHeader</title>
       <link>https://wright-development.github.io/Expected.Request/api/request/add-header/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -101,18 +113,6 @@ Expect Extensions Task&amp;lt;IExpectRequest&amp;gt; Expect&amp;lt;T&amp;gt;(thi
       <description>Task&amp;lt;IExpectRequest&amp;gt; Get(string url);  Used to make a Get request to the URL specified.
 Example
 await new Request() .Get(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;) .Done();  Back to Request</description>
-    </item>
-    
-    <item>
-      <title>Getting Started</title>
-      <link>https://wright-development.github.io/Expected.Request/pages/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      
-      <guid>https://wright-development.github.io/Expected.Request/pages/</guid>
-      <description>Documentation in progress. Please notify me of any issues.
-Just as the name suggests Expected.Request helps you define what you expect out of your requests.
-Expected Request is a Fluent API that guides you through your API testing, and it all starts by creating a new Request.
-Installation You can install Expected.Request by copying and pasting the following command into your Package Manager Console within Visual Studio (Tools &amp;gt; NuGet Package Manager &amp;gt; Package Manager Console).</description>
     </item>
     
     <item>

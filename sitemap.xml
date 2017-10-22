@@ -3,6 +3,10 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
+    <loc>https://wright-development.github.io/Expected.Request/pages/</loc>
+  </url>
+  
+  <url>
     <loc>https://wright-development.github.io/Expected.Request/api/request/add-header/</loc>
   </url>
   
@@ -46,10 +50,6 @@
   
   <url>
     <loc>https://wright-development.github.io/Expected.Request/api/request/get/</loc>
-  </url>
-  
-  <url>
-    <loc>https://wright-development.github.io/Expected.Request/pages/</loc>
   </url>
   
   <url>
