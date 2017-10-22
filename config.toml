@@ -55,6 +55,11 @@ paginate = 10
     weight = 6
     identifier = "project"
     url = "https://github.com/wright-development/Expected.Request"
+  [[menu.main]]
+    name = "My Blog"
+    weight = 7
+    identifier = "blog"
+    url = "https://wright-development.github.io/"
 
 [social]
   github = "wright-development"
