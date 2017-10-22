@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Expected.Request</title>
-    <link>https://wright-development.github.io/</link>
+    <link>https://wright-development.github.io/Expected.Request/</link>
     <description>Recent content on Expected.Request</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <copyright>Wright Development &amp;copy; 2016. All rights reserved.</copyright>
     
-	<atom:link href="https://wright-development.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://wright-development.github.io/Expected.Request/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>AddHeader</title>
-      <link>https://wright-development.github.io/api/request/add-header/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/add-header/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/add-header/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/add-header/</guid>
       <description>IRequest AddHeader(string key, string value);  Allows the user to add headers to the HttpClient that the Request requires.
 Example
 await new Request() .AddHeader(&amp;quot;Authorization&amp;quot;, &amp;quot;Bearer Qadz...&amp;quot;) ... .Done();  Back to Request</description>
@@ -24,20 +24,20 @@ await new Request() .AddHeader(&amp;quot;Authorization&amp;quot;, &amp;quot;Bear
     
     <item>
       <title>ContentConverter</title>
-      <link>https://wright-development.github.io/api/content-converter/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/content-converter/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/content-converter/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/content-converter/</guid>
       <description>The IConverter interface is used to convert your class types into the content type and vice versa. The IConverter interface consists of the three methods listed below.
 string ContentType {get;} T ConvertToObject(string content); string ConvertToContent(T type);  There are two implementations of the interface that are provided with the library currently for JSON (JsonContentConverter) and XML (XmlContentConverter) conversion. If there are other implementations that you need feel free to implement the interface or submit a PR to the repository.</description>
     </item>
     
     <item>
       <title>Delete</title>
-      <link>https://wright-development.github.io/api/request/delete/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/delete/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/delete/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/delete/</guid>
       <description>Task&amp;lt;IExpectRequest&amp;gt; Delete(string url);  Used to make a Delete request to the URL specified.
 Example
 await new Request() .Delete(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;) .Done();  Back to Request</description>
@@ -45,10 +45,10 @@ await new Request() .Delete(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;
     
     <item>
       <title>Done</title>
-      <link>https://wright-development.github.io/api/expect-request/done/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/expect-request/done/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/expect-request/done/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/expect-request/done/</guid>
       <description>Method Task&amp;lt;IDoneRequest&amp;gt; Done();  This completes the Fluent API chain and disposes of the HttpClient and HttpResponse.
 Example
 await new Request() ... .Next( x =&amp;gt; x.Done()); // This can be shortened to just .Done() using extension methods.  Back to ExpectRequest</description>
@@ -56,48 +56,48 @@ await new Request() ... .Next( x =&amp;gt; x.Done()); // This can be shortened t
     
     <item>
       <title>DoneRequest</title>
-      <link>https://wright-development.github.io/api/done-request/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/done-request/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/done-request/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/done-request/</guid>
       <description>The DoneRequest class implements the DoneRequest interface contains and no members. The only purpose is to signify the end of the request chain and that the HttpClient and HttpResponse will be disposed of.</description>
     </item>
     
     <item>
       <title>Expect</title>
-      <link>https://wright-development.github.io/api/expect-request/expect/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/expect-request/expect/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/expect-request/expect/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/expect-request/expect/</guid>
       <description>Method Task&amp;lt;IExpectRequest&amp;gt; Expect(Action&amp;lt;HttpResponseMessage&amp;gt; expectedAction, string assertionMessage = null); Task&amp;lt;IExpectRequest&amp;gt; Expect(Func&amp;lt;HttpResponseMessage, Task&amp;gt; expectedAction, string assertionMessage = null);  These are the building blocks for all expectations throughout the framework. The first extension method is for non-async action expectations, and the second is for async expectations. There needs to be a specific function for async expectations which ensures that if an expectation is not met an exception will be properly thrown.</description>
     </item>
     
     <item>
       <title>ExpectRequest</title>
-      <link>https://wright-development.github.io/api/expect-request/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/expect-request/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/expect-request/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/expect-request/</guid>
       <description>The ExpectRequest class implements the IExpectRequest interface and contains the following members.
 ExpectRequest(HttpResponseMessage response, HttpClient client) Task&amp;lt;IRequest&amp;gt; Request(); Task&amp;lt;IExpectRequest&amp;gt; Expect(Action&amp;lt;HttpResponseMessage&amp;gt; expectedAction, string assertionMessage = null); Task&amp;lt;IExpectRequest&amp;gt; Expect(Func&amp;lt;HttpResponseMessage, Task&amp;gt; expectedAction, string assertionMessage = null); Task&amp;lt;IDoneRequest&amp;gt; Done();  ExpectRequest is the assertion piece of the Expected.Request framework. The constructor should rarely, if at all used, instead it should only be implicitly called by the Request class after a request has been made. In addition, the extension methods that are the assertion piece of the framework, which can be found below.</description>
     </item>
     
     <item>
       <title>ExpectRequest Extensions</title>
-      <link>https://wright-development.github.io/api/expect-request/extensions/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/expect-request/extensions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/expect-request/extensions/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/expect-request/extensions/</guid>
       <description>Map Extensions Task&amp;lt;IExpectRequest&amp;gt; Map&amp;lt;T&amp;gt;(this IExpectRequest expect, Action&amp;lt;T&amp;gt; retrieveObject); Task&amp;lt;IExpectRequest&amp;gt; Map&amp;lt;T&amp;gt;(this IExpectRequest expect, Action&amp;lt;T&amp;gt; expectedAction, IContentConverter&amp;lt;T&amp;gt; converter)  Map does exactly what the method name implies, it maps the HttpReponseMessage&amp;rsquo;s content into the object type specified. Then using the Action that the caller provides supplies the type.
 Expect Extensions Task&amp;lt;IExpectRequest&amp;gt; Expect&amp;lt;T&amp;gt;(this IExpectRequest expect, Func&amp;lt;T,Task&amp;gt; taskFunc, string assertMessage = null); Task&amp;lt;IExpectRequest&amp;gt; Expect&amp;lt;T&amp;gt;(this IExpectRequest expect, Func&amp;lt;T,Task&amp;gt; taskFunc, IContentConverter&amp;lt;T&amp;gt; converter, string assertMessage = null); Task&amp;lt;IExpectRequest&amp;gt; Expect&amp;lt;T&amp;gt;(this IExpectRequest expect, Action&amp;lt;T&amp;gt; expectedAction, string assertMessage = null); Task&amp;lt;IExpectRequest&amp;gt; Expect&amp;lt;T&amp;gt;(this IExpectRequest expect, Action&amp;lt;T&amp;gt; expectedAction, IContentConverter&amp;lt;T&amp;gt; converter, string assertMessage = null);  There are two forms of the Expect function, one that takes a function of type T that returns a task and the other simply takes an action of type T.</description>
     </item>
     
     <item>
       <title>Get</title>
-      <link>https://wright-development.github.io/api/request/get/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/get/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/get/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/get/</guid>
       <description>Task&amp;lt;IExpectRequest&amp;gt; Get(string url);  Used to make a Get request to the URL specified.
 Example
 await new Request() .Get(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;) .Done();  Back to Request</description>
@@ -105,10 +105,10 @@ await new Request() .Get(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;) .
     
     <item>
       <title>Getting Started</title>
-      <link>https://wright-development.github.io/pages/</link>
+      <link>https://wright-development.github.io/Expected.Request/pages/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/pages/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/pages/</guid>
       <description>Documentation in progress. Please notify me of any issues.
 Just as the name suggests Expected.Request helps you define what you expect out of your requests.
 Expected Request is a Fluent API that guides you through your API testing, and it all starts by creating a new Request.
@@ -117,10 +117,10 @@ Installation You can install Expected.Request by copying and pasting the followi
     
     <item>
       <title>Post</title>
-      <link>https://wright-development.github.io/api/request/post/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/post/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/post/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/post/</guid>
       <description>Task&amp;lt;IExpectRequest&amp;gt; Post(string url, HttpContent);  Used to make a POST request to the URL specified. You should use the extension methods to send your object&amp;rsquo;s as HttpContent automatically. View the extension methods here.
 Example
 await new Request() .Post(&amp;quot;http://localhost:8080/api/todo/1&amp;quot; new StringContent(&amp;quot;...&amp;quot;)) .Done();  Back to Request</description>
@@ -128,10 +128,10 @@ await new Request() .Post(&amp;quot;http://localhost:8080/api/todo/1&amp;quot; n
     
     <item>
       <title>Put</title>
-      <link>https://wright-development.github.io/api/request/put/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/put/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/put/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/put/</guid>
       <description>Task&amp;lt;IExpectRequest&amp;gt; Put(string url, HttpContent content);  Used to make a Put request to the URL specified. You should use the extension methods to send your object&amp;rsquo;s as HttpContent automatically. View the extension methods here.
 Example
 await new Request() .Put(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;, new StringContent(&amp;quot;...&amp;quot;)) .Done();  Back to Request</description>
@@ -139,10 +139,10 @@ await new Request() .Put(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;, n
     
     <item>
       <title>Request</title>
-      <link>https://wright-development.github.io/api/expect-request/request/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/expect-request/request/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/expect-request/request/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/expect-request/request/</guid>
       <description>Method Task&amp;lt;IRequest&amp;gt; Request();  Calling Request allows you to move into your next request within the chain and perform a Get, Put, Post, or Delete. There are extensions that allow you to skip the Request call and move straight into the request verb, and they can be found here
 Example
 await new Request() .Get(&amp;quot;http://localhost:8080/api/todo&amp;quot;) .Next(x =&amp;gt; x.Request()) .Next(x =&amp;gt; x.Delete(&amp;quot;http://localhost:8080/api/todo/1&amp;quot;)) .Done();  Back to ExpectRequest</description>
@@ -150,29 +150,29 @@ await new Request() .Get(&amp;quot;http://localhost:8080/api/todo&amp;quot;) .Ne
     
     <item>
       <title>Request</title>
-      <link>https://wright-development.github.io/api/request/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/</guid>
       <description>The Request class implements the IRequest interface and contains the following members.
 Request() Request(HttpClient client) IRequest AddHeader(string key, string value); IRequest WithTimeout(TimeSpan span); Task&amp;lt;IExpectRequest&amp;gt; Post(string url, HttpContent content); Task&amp;lt;IExpectRequest&amp;gt; Put(string url, HttpContent content); Task&amp;lt;IExpectRequest&amp;gt; Get(string url); Task&amp;lt;IExpectRequest&amp;gt; Delete(string url);  The purpose of the Request class is to construct an object capable of making requests to an API. As a result, there are two constructors, the parameterless constructor and the constructor that receives an HttpClient.</description>
     </item>
     
     <item>
       <title>Request Extensions</title>
-      <link>https://wright-development.github.io/api/request/extensions/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/extensions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/extensions/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/extensions/</guid>
       <description>Timeout Methods IRequest NoTimeout(this IRequest request);  Example new Request() .NoTimeout() .Get(&amp;quot;http://localhost:8080/api/todo&amp;quot;) ... .Done();  Request Methods Task&amp;lt;IExpectRequest&amp;gt; Post&amp;lt;T&amp;gt;(this IRequest request, string url, T type); Task&amp;lt;IExpectRequest&amp;gt; Put&amp;lt;T&amp;gt;(this IRequest request, string url, T type); Task&amp;lt;IExpectRequest&amp;gt; Post&amp;lt;T&amp;gt;(this IRequest request,string url, T type, IContentConverter&amp;lt;T&amp;gt; converter); Task&amp;lt;IExpectRequest&amp;gt; Put&amp;lt;T&amp;gt;(this IRequest request,string url, T type, IContentConverter&amp;lt;T&amp;gt; converter);  By default the Post and Put will convert your type to JSON, if you would like to convert to a different type then you will need to implement the IContentCoverter interface.</description>
     </item>
     
     <item>
       <title>WithTimeout</title>
-      <link>https://wright-development.github.io/api/request/with-timeout/</link>
+      <link>https://wright-development.github.io/Expected.Request/api/request/with-timeout/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>https://wright-development.github.io/api/request/with-timeout/</guid>
+      <guid>https://wright-development.github.io/Expected.Request/api/request/with-timeout/</guid>
       <description>IRequest WithTimeout(TimeSpan span);  Used to specify a timeout on the HttpClient within the Request. In addition, there is an extension method that specifies that there should be no timeout. The method can be found on the extension methods page here.
 Example
 await new Request() .WithTimeout(new TimeSpan(10000)) ... .Done();  Back to Request</description>

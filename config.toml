@@ -1,4 +1,4 @@
-baseURL = "https://wright-development.github.io/"
+baseURL = "https://wright-development.github.io/Expected.Request/"
 languageCode = "en-us"
 title = "Expected.Request"
 theme = "blackburn"

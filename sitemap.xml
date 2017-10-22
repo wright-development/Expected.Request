@@ -3,92 +3,92 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://wright-development.github.io/api/request/add-header/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/add-header/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/content-converter/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/content-converter/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/delete/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/delete/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/expect-request/done/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/expect-request/done/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/done-request/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/done-request/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/expect-request/expect/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/expect-request/expect/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/expect-request/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/expect-request/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/expect-request/extensions/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/expect-request/extensions/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/get/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/get/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/pages/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/pages/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/pages/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/pages/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/post/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/post/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/put/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/put/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/expect-request/request/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/expect-request/request/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/extensions/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/extensions/</loc>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/tags/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/tags/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/topics/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/topics/</loc>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://wright-development.github.io/api/request/with-timeout/</loc>
+    <loc>https://wright-development.github.io/Expected.Request/api/request/with-timeout/</loc>
   </url>
   
 </urlset>
